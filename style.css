@@ -135,7 +135,7 @@ section {
 /* ==================== HERO SECTION ==================== */
 #hero {
     /* Aquí está la magia: reemplaza la URL de placeholder por la nueva */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/fitohero.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/fitohero.jpg');
     
     background-size: cover;
     background-position: center;
