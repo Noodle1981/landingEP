@@ -3,155 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EP Consultora - Seguridad y Medio Ambiente Agrícola</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Iconos de Font Awesome -->
+    <title>EP Consultora | Soluciones Integrales en Higiene, Seguridad y Medio Ambiente</title>
+    <meta name="description" content="Integramos consultoría experta con tecnología de vanguardia. Digitalice la gestión HSE, garantice el cumplimiento y potencie la seguridad de su equipo con la Plataforma EP.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ==================== CABECERA ==================== -->
-    <header class="header">
-        <div class="container navbar">
-            <img src="./img/logoxamanen.png" alt="logo" class="logo">
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="./home.html">Home</a></li>
-                    <li><a href="#problematica">Fitosanitarios</a></li>
-                    <li><a href="#servicios">Nuestros Servicios</a></li>
-                    <li><a href="#nosotros">Quiénes Somos</a></li>
-                    <li><a href="#contacto" class="btn btn-secondary">Contacto</a></li>
-                </ul>
-            </nav>
+    <!-- ==================== HEADER ==================== -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./img/EP.png" alt="Logo de EP Consultora - Equipo Preventivo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto align-items-lg-center">
+        <!-- Enlaces principales de la página -->
+        <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
+        
+        <!-- Enlace a la sección Agro -->
+        <li class="nav-item"><a class="nav-link" href="./agro.html">Agro</a></li>
+        
+        <!-- Menú Desplegable para las Plataformas -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPlataformas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Plataformas
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPlataformas">
+                <!-- Enlace que abre una plataforma en una nueva pestaña -->
+                <li><a class="dropdown-item" href="https://segop.milaulas.com/" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-graduation-cap me-2"></i>Acceso SegOp <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                </a></li>
+                  <!-- Enlace que abre una plataforma en una nueva pestaña -->
+                 <li><a class="dropdown-item" href="https://equipopreventivo.com.ar/" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-sign-in-alt me-2"></i>Acceso EP <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                </a></li>
+            </ul>
+        </li>
+
+        
+        
+        <!-- Botón de Contacto -->
+        <li class="nav-item ms-lg-3">
+            <a href="#contacto" class="btn btn-primary-custom">Contáctenos</a>
+        </li>
+    </ul>
+</div>
         </div>
     </header>
 
     <main>
-        <!-- ==================== SECCIÓN HERO ==================== -->
-        <section id="hero">
-            <div class="container hero-content">
-                <h1>Proteja su Cosecha, su Equipo y el Medio Ambiente</h1>
-                <p>Somos la primera consultora en la provincia especializada en el manejo seguro y sustentable de fitosanitarios. Evite accidentes, cumpla con las normativas y certifique sus buenas prácticas.</p>
-                <a href="#contacto" class="btn btn-primary">Solicitar una Evaluación Inicial</a>
-            </div>
-        </section>
-
-        <!-- ==================== SECCIÓN PROBLEMÁTICA ==================== -->
-        <section id="problematica" class="section-light">
-            <div class="container">
-                <h2 class="section-title">El Riesgo Oculto en su Campo</h2>
-                <p class="section-subtitle">El mal uso de fitosanitarios no solo afecta la productividad, sino que genera graves riesgos legales, humanos y ambientales.</p>
-                <div class="risk-grid">
-                    <div class="risk-card">
-                        <i class="fas fa-user-injured"></i>
-                        <h3>Accidentes y Salud</h3>
-                        <p>La falta de capacitación sobre el uso correcto de EPP (Equipo de Protección Personal) y la manipulación de productos puede causar intoxicaciones y problemas de salud a largo plazo.</p>
-                    </div>
-                    <div class="risk-card">
-                        <i class="fas fa-biohazard"></i>
-                        <h3>Contaminación</h3>
-                        <p>El desecho inadecuado de envases vacíos o vencidos contamina suelos y fuentes de agua, afectando el ecosistema y la calidad de su propia tierra.</p>
-                    </div>
-                    <div class="risk-card">
-                        <i class="fas fa-gavel"></i>
-                        <h3>Sanciones y Normativas</h3>
-                        <p>El incumplimiento de las normativas de seguridad e higiene puede derivar en multas, clausuras y la pérdida de certificaciones necesarias para la comercialización.</p>
-                    </div>
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero" class="hero-section text-center position-relative">
+            <div class="container position-relative" data-aos="fade-up">
+                <h1 class="hero-title">Consultoría Experta, Potenciada por Tecnología Inteligente</h1>
+                <p class="hero-subtitle lead mx-auto">Hacemos de las personas, la seguridad y el ambiente tu principal valor, integrando nuestra experiencia con una plataforma digital que simplifica la gestión HSE.</p>
+                <a href="#servicios" class="btn btn-primary-custom btn-lg">Explorar Nuestros Servicios</a>
+                
+                <div class="dashboard-mockup-wrapper mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    <figure class="dashboard-mockup shadow-lg">
+                        <div class="mockup-header"><span></span><span></span><span></span></div>
+                        <img src="./img/dahboard2.png" alt="Dashboard de Cumplimiento de la plataforma EP" class="img-fluid" loading="lazy">
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== SECCIÓN DE SERVICIOS ==================== -->
-        <section id="servicios">
-            <div class="container">
-                <h2 class="section-title">Nuestra Solución Integral: El Equipo Preventivo</h2>
-                <p class="section-subtitle">Ofrecemos un servicio 360° para garantizar la seguridad y la sustentabilidad en su producción.</p>
-                <div class="services-grid">
-                    <article class="service-card">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <h3>Capacitaciones Prácticas</h3>
-                        <p>Cursos in-situ y online (próximamente en Moodle) para todo su personal sobre uso de EPP, dosificación, aplicación y gestión de residuos.</p>
-                    </article>
-                    <article class="service-card">
-                        <i class="fas fa-clipboard-check"></i>
-                        <h3>Inspecciones y Auditorías</h3>
-                        <p>Realizamos visitas de inspección para detectar puntos críticos, evaluar el cumplimiento de normativas y generar un plan de mejora a medida.</p>
-                    </article>
-                    <article class="service-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Certificación de Buenas Prácticas</h3>
-                        <p>Otorgamos certificaciones que avalan su compromiso con la seguridad y el medio ambiente, mejorando su reputación y acceso a mercados exigentes.</p>
-                    </article>
+        <!-- ==================== LOGOS DE CLIENTES ==================== -->
+        <section id="clientes" class="py-5 bg-light-subtle">
+            <div class="container text-center" data-aos="fade-up">
+                <h3 class="text-muted fw-normal mb-5">Confían en nuestro trabajo</h3>
+                <div class="client-logos-container">
+                    <!-- LOS LOGOS DEL PDF -->
+                    <img src="./img/logos/iscot.JPG" alt="Logo ISCOT" class="client-logo"> 
+                    <img src="./img/logos/ocho20.JPG" alt="Logo Ocho20" class="client-logo"> 
+                    <img src="./img/logos/manzanar.JPG" alt="Logo Manzanar" class="client-logo">
+                    <img src="./img/logos/mg.JPG" alt="Logo MG" class="client-logo">
+                    <img src="./img/logos/terratest.JPG" alt="Logo Terratest" class="client-logo">
+                    <img src="./img/logos/servifood.JPG" alt="Logo Servi Food" class="client-logo">
+                    <img src="./img/logos/ausonia.JPG" alt="Club Ausonia" class="client-logo"> 
+                    <img src="./img/logos/peraltahermanos.JPG" alt="Peralta Hermanos" class="client-logo">
+                    <img src="./img/logos/lacasadelchachinado.JPG" alt="Logo La casa del Chachinado" class="client-logo">
+                    <img src="./img/logos/agrorawson.JPG" alt="Logo Agro Rawson" class="client-logo">
+
+
                 </div>
             </div>
         </section>
         
-        <!-- ==================== SECCIÓN SOBRE NOSOTROS (POR QUÉ ELEGIRNOS) ==================== -->
-        <section id="nosotros" class="section-light">
-             <div class="container about-us-container">
-                 <div class="about-us-image">
-                     <img src="./img/equipopreventivo.png" alt="Equipo de EP Consultora en el campo">
-                 </div>
-                 <div class="about-us-content">
-                    <h2 class="section-title-left">Pioneros en la Prevención Agrícola de la Región</h2>
-                    <p>En EP Consultora, combinamos experiencia en seguridad laboral y conocimiento del agro para ofrecer una solución única en la provincia. Nuestro enfoque es preventivo, no reactivo.</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> <strong>Plataforma Digital:</strong> Gestione constancias, visitas y firmas digitales de forma fácil y segura.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Enfoque Local:</strong> Entendemos la realidad y los desafíos de los productores de nuestra provincia.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Resultados Medibles:</strong> Reduzca riesgos, optimice recursos y fortalezca la imagen de su empresa.</li>
-                    </ul>
-                 </div>
-             </div>
+        <!-- ==================== NOSOTROS Y POLÍTICA  ==================== -->
+        <section id="nosotros" class="py-5">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <span class="text-primary-custom fw-bold text-uppercase">Nuestra Esencia</span>
+                        <h2 class="section-title mt-2">Un equipo de profesionales apasionadas</h2>
+                        <p class="text-muted">Somos una empresa que tiene como principal objetivo brindar servicio de consultoría en las áreas de gestión empresarial.</p>
+                        <p>Estamos conformadas por un equipo que busca ser aliado de sus clientes, brindando soluciones rápidas, eficaces, competitivas, flexibles y sostenibles en el tiempo.</p>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                        <div class="policy-card">
+                            <i class="fas fa-shield-alt fa-2x text-primary-custom mb-3"></i>
+                            <h4 class="mb-3">Nuestra Política</h4>
+                            <p class="mb-0">Apuntamos al fortalecimiento de la competitividad mejorando los procesos, la seguridad y el capital humano. Centramos el eje de interés en la promoción de un lugar de trabajo seguro, fomentando una cultura de prevención de riesgos laborales y promoviendo el cuidado del medio ambiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- ==================== SECCIÓN DE CONTACTO (CTA FINAL) ==================== -->
-   <section id="contacto">
-    <div class="container contact-grid">
-        <!-- Columna Izquierda: Texto y Formulario -->
-        <div class="contact-text">
-            <h2>¿Listo para dar el siguiente paso hacia una producción más segura y responsable?</h2>
-            <p>Déjenos sus datos y un especialista del Equipo Preventivo se pondrá en contacto para una primera evaluación sin costo.</p>
-            <form class="contact-form">
-                <input type="text" placeholder="Su Nombre" required>
-                <input type="email" placeholder="Su Email" required>
-                <button type="submit" class="btn btn-primary">Contactar Ahora</button>
-            </form>
-        </div>
-        <!-- Columna Derecha: Imagen -->
-        <div class="contact-image">
-            <img src="./img/equiposcapacitado.png" alt="Capacitación sobre uso de fitosanitarios por EP Consultora">
-        </div>
-    </div>
-</section>
-    </main>
-
-    <!-- ==================== PIE DE PÁGINA ==================== -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-col">
-                <h3>EP Consultora</h3>
-                <p>Equipo Preventivo. Su aliado en seguridad y sustentabilidad agrícola.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="#problematica">Problemática</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#nosotros">Quiénes Somos</a></li>
+        <!-- ==================== SERVICIOS  ==================== -->
+        <section id="servicios" class="py-5 bg-light-subtle">
+            <div class="container">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Nuestras Áreas de Expertise</h2>
+                    <p class="lead text-muted">Soluciones integrales para los pilares de tu organización.</p>
+                </div>
+                <!-- Tabs de Navegación -->
+                <ul class="nav nav-pills justify-content-center mb-4" id="services-tab" role="tablist" data-aos="fade-up">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="hys-tab" data-bs-toggle="pill" data-bs-target="#hys-content" type="button" role="tab"><i class="fas fa-hard-hat me-2"></i>Higiene y Seguridad</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="rrhh-tab" data-bs-toggle="pill" data-bs-target="#rrhh-content" type="button" role="tab"><i class="fas fa-users me-2"></i>Recursos Humanos</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="ma-tab" data-bs-toggle="pill" data-bs-target="#ma-content" type="button" role="tab"><i class="fas fa-leaf me-2"></i>Medio Ambiente</button>
+                    </li>
                 </ul>
+
+                <!-- Contenido de los Tabs -->
+                <div class="tab-content" id="services-tab-content" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Higiene y Seguridad -->
+                    <div class="tab-pane fade show active" id="hys-content" role="tabpanel">
+                        <div class="service-content">
+                            <p>Asistimos a nuestros clientes en la prevención de riesgos, en post del cuidado y la preservación de la seguridad y la salud de los trabajadores.</p>
+                            <ul class="service-list">
+                                <li>Asesoría para certificación ISO 45001:2018</li>
+                                <li>Gestión de Higiene y Seguridad (Planes, Matrices, Procedimientos)</li>
+                                <li>Investigación de accidentes y enfermedades profesionales</li>
+                                <li>Capacitación y entrenamiento de personal</li>
+                                <li>Mediciones según resolución SRT</li>
+                                <li>Control de empresas contratistas y compra de EPP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Recursos Humanos -->
+                    <div class="tab-pane fade" id="rrhh-content" role="tabpanel">
+                         <div class="service-content">
+                            <p>Nos aseguramos que su empresa cuente con el colaborador indicado para la obtención de los objetivos de la organización.</p>
+                            <ul class="service-list">
+                                <li>Provisión de talentos (Reclutamiento y Selección)</li>
+                                <li>Gestión de talentos (Coucheo de líderes, Capacitación)</li>
+                                <li>Administración de RRHH (Implementación de procesos, legajos)</li>
+                                <li>Digitalización y archivo de legajos</li>
+                                <li>Descripción de puestos y actualización de nóminas</li>
+                                <li>Gestión de ART</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Medio Ambiente -->
+                    <div class="tab-pane fade" id="ma-content" role="tabpanel">
+                        <div class="service-content">
+                            <p>Brindamos servicios en materia ambiental orientada al cumplimiento legal y a nuestra responsabilidad como ciudadanos.</p>
+                            <ul class="service-list">
+                                <li>Desarrollo de Planes de Gestión Ambiental</li>
+                                <li>Estudios de Impacto Ambiental</li>
+                                <li>Auditorías y matriz de cumplimiento legal</li>
+                                <li>Estudios de agua, suelo y aire</li>
+                                <li>Programa de capacitación ambiental</li>
+                                <li>Trámites y habilitaciones ante entes reguladores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <p><i class="fas fa-phone"></i>2644533704</p>
-                <p><i class="fas fa-envelope"></i> contacto@epconsultora.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Capital, San Juan</p>
+        </section>
+
+        <!-- ==================== PLATAFORMA EP (LOS 4 PILARES) ==================== -->
+        <section id="plataforma" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Tu Centro de Comando Digital: La Plataforma EP</h2>
+                    <p class="lead text-muted">Digitalizamos nuestros servicios en 4 módulos de alto impacto para darte control y visibilidad total.</p>
+                </div>
+                <div class="features-grid">
+                    <!--  4 features cards del HTML original -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-image-wrapper"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1470" alt="Capacitación y Certificación" class="img-fluid" loading="lazy"></div>
+                        <div class="card-content">
+                            <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <h3 class="feature-title">Capacitación y Certificación</h3>
+                            <p class="feature-description">Integramos con nuestra plataforma **SegOp** (Moodle) para certificaciones digitales, trazabilidad total y recordatorios de vencimiento.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-image-wrapper"><img src="./img/inspect.png" alt="Inspecciones Digitales" class="img-fluid" loading="lazy"></div>
+                        <div class="card-content">
+                            <div class="feature-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <h3 class="feature-title">Checklists e Inspecciones</h3>
+                            <p class="feature-description">Digitalice formularios, genere constancias con **firma digital** y obtenga informes en PDF al instante. Adiós al papel, hola a la data proactiva.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-image-wrapper"><img src="./img/dahboard.png" alt="Dashboard de Cumplimiento" class="img-fluid" loading="lazy"></div>
+                        <div class="card-content">
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="feature-title">Dashboard y Alertas Proactivas</h3>
+                            <p class="feature-description">KPIs de seguridad en tiempo real y alertas automáticas por desvíos o vencimientos. Visibilidad total para anticiparse al riesgo.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                         <div class="card-image-wrapper"><img src="./img/analisis.png" alt="Análisis de Incidentes" class="img-fluid" loading="lazy"></div>
+                        <div class="card-content">
+                            <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h3 class="feature-title">Gestión de Incidentes</h3>
+                            <p class="feature-description">Transforme incidentes en oportunidades. Registre, analice y convierta hallazgos en nuevo material de capacitación y acciones correctivas.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 20255 EP Consultora. Todos los derechos reservados.</p>
-            <p>© Powered by Grupo Xamanen.</p>
+        </section>
+
+        <!-- ==================== SECCIÓN AGRO ==================== -->
+        <section id="agro" class="py-5 bg-dark-custom text-white">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <span class="text-primary-custom fw-bold text-uppercase">Solución Especializada</span>
+                        <h2 class="section-title text-white mt-2">Tecnología para el Campo</h2>
+                        <p class="lead">Simplificamos la gestión de seguridad y cumplimiento en el sector Agro con herramientas diseñadas para el trabajo en terreno.</p>
+                        <ul class="list-unstyled mt-4 fs-5">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i>Checklists de maquinaria pre-uso.</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i>Registros de capacitación con firma digital.</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i>Reporte de condiciones desde cualquier dispositivo.</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i>Acceso offline y sincronización automática.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6" data-aos="zoom-in-left">
+                        <img src="./img/dahboard.png" alt="Tablet mostrando un checklist digital en un entorno agrícola" class="img-fluid rounded shadow-lg">
+                        <!-- NOTA: Reemplazar 'agro-mockup.png' con una imagen tuya de un tablet o móvil en el campo -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ODS  ==================== -->
+        <section id="compromiso-sostenible" class="py-5">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7" data-aos="fade-right">
+                        <h2 class="section-title">Comprometidos con un Futuro Sostenible</h2>
+                        <p class="lead text-muted">Nuestros servicios se encuentran comprometidos con los Objetivos de Desarrollo Sostenible de las Naciones Unidas bajo las directrices de la Agenda 2030, impactando directamente en la salud, educación, trabajo decente y la protección del medio ambiente.</p>
+                        <a href="#contacto" class="btn btn-outline-primary-custom mt-3">Súmate a nuestro compromiso</a>
+                    </div>
+                    <div class="col-lg-5" data-aos="fade-left">
+                        <!-- Usamos la imagen del PDF para el gráfico de ODS -->
+                        <img src="./img/ods.png" alt="Gráfico de Objetivos de Desarrollo Sostenible" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== STAFF DEL PDF ==================== -->
+        <section id="equipo" class="py-5 bg-light-subtle">
+            <div class="container">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">El Equipo Humano Detrás de la Tecnología</h2>
+                    <p class="lead text-muted">Personas reales, con experiencia real, listas para ayudarte.</p>
+                </div>
+                <div class="row justify-content-center g-4">
+                    <!-- Tarjetas de Staff -->
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="staff-card">
+                            <img src="./img/staff/carolina.png" alt="Foto de Lic. BARTOL, Carolina" class="staff-img">
+                            <h5 class="staff-name">Lic. Carolina Bartol</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                        <div class="staff-card">
+                            <img src="./img/staff/melisa.png" alt="Foto de Lic. ECHEGARAY, Melisa" class="staff-img">
+                            <h5 class="staff-name">Lic. Melisa Echegaray</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                        <div class="staff-card">
+                            <img src="./img/staff/analia.png" alt="Foto de Lic. ROSALES, Analía" class="staff-img">
+                            <h5 class="staff-name">Lic. Analía Rosales</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="staff-card">
+                            <img src="./img/staff/jimena.png" alt="Foto de Jimena Borquez, Área RRHH" class="staff-img">
+                            <h5 class="staff-name">Jimena Borquez</h5>
+                            <p class="staff-title">Área RRHH</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="staff-card">
+                            <img src="./img/staff/waltler.PNG" alt="Foto de Jimena Borquez, Área RRHH" class="staff-img">
+                            <h5 class="staff-name">Walter Jalaff</h5>
+                            <p class="staff-title">Director Área Tecnológia</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="staff-card">
+                            <img src="./img/staff/carlos.PNG" alt="Foto de Jimena Borquez, Área RRHH" class="staff-img">
+                            <h5 class="staff-name">Carlos Taglioreti</h5>
+                            <p class="staff-title">Backend</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="staff-card">
+                            <img src="./img/staff/omar.PNG" alt="Foto de Jimena Borquez, Área RRHH" class="staff-img">
+                            <h5 class="staff-name">Omar Olivera</h5>
+                            <p class="staff-title">QA & Moodle</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                        <div class="staff-card">
+                            <img src="./img/staff/leandro.PNG" alt="Foto de Jimena Borquez, Área RRHH" class="staff-img">
+                            <h5 class="staff-name">Leandro Videla</h5>
+                            <p class="staff-title">Área RRSS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACTO ==================== -->
+        <section id="contacto" class="py-5">
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="section-title">Dé el salto a la gestión HSE 4.0</h2>
+                        <p class="lead text-muted mb-4">Solicite una demo personalizada y descubra cómo <strong>EP Consultora</strong> puede reducir sus riesgos, optimizar sus costos y fortalecer su cultura de seguridad.</p>
+                        <form id="demo-form" class="row g-3 justify-content-center" novalidate>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control form-control-lg" placeholder="Su nombre" required>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="email" class="form-control form-control-lg" placeholder="Su email de trabajo" required>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary-custom btn-lg w-100">Solicitar Demo</button>
+                            </div>
+                        </form>
+                        <div id="form-feedback" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer-custom bg-dark-custom text-white-50 pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-white mb-3">EP Consultora</h5>
+                    <p>Transformamos la gestión de Higiene, Seguridad y Medio Ambiente con soluciones que integran experiencia y tecnología.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.instagram.com/equipo.preventivo/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <!-- Añadir más redes si existen -->
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-white mb-3">Navegación</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#nosotros" class="footer-link">Nosotros</a></li>
+                        <li><a href="#servicios" class="footer-link">Servicios</a></li>
+                        <li><a href="#plataforma" class="footer-link">Plataforma</a></li>
+                        <li><a href="#equipo" class="footer-link">Equipo</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                     <h5 class="text-white mb-3">Recursos</h5>
+                     <ul class="list-unstyled">
+                        <li><a href="https://equipopreventivo.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-link">Plataforma EP</a></li>
+                        <li><a href="https://segop.milaulas.com/" target="_blank" rel="noopener noreferrer" class="footer-link">SegOp</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-white mb-3">Contacto Directo</h5>
+                    <ul class="list-unstyled">
+                        <!-- INFO DEL PDF -->
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> 264-154523226</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> 264-155096784</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> epreventivoconsultora@gmail.com</li>
+                        <li class="mb-2"><i class="fab fa-instagram me-2"></i> equipo.preventivo</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p>© <span id="year"></span> EP Consultora y Grupo Xamanen. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
