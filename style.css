@@ -16,8 +16,8 @@
     --font-family-headings: 'Poppins', sans-serif;
     --font-family-base: 'Inter', sans-serif;
     --border-radius: 12px;
-    --shadow-soft: 0 8px 24px rgba(0,0,0,0.05);
-    --shadow-medium: 0 12px 40px rgba(0,0,0,0.1);
+    --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -27,7 +27,12 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-family-headings);
     color: var(--dark-color);
     font-weight: 700;
@@ -52,7 +57,8 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.5px;
 }
 
-.btn-primary-custom:hover, .btn-primary-custom:focus {
+.btn-primary-custom:hover,
+.btn-primary-custom:focus {
     background-color: var(--primary-color-darker);
     border-color: var(--primary-color-darker);
     color: var(--white-color);
@@ -77,13 +83,27 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--primary-color);
 }
 
-.text-primary-custom { color: var(--primary-color) !important; }
-.bg-dark-custom { background-color: var(--dark-color); }
-.bg-light-subtle { background-color: #fbfcfe; }
+.text-primary-custom {
+    color: var(--primary-color) !important;
+}
+
+.bg-dark-custom {
+    background-color: var(--dark-color);
+}
+
+.bg-light-subtle {
+    background-color: #fbfcfe;
+}
 
 /* ==================== 3. HEADER / NAVEGACIÓN ==================== */
-.logo { max-height: 45px; }
-.navbar { transition: box-shadow 0.3s ease; }
+.logo {
+    max-height: 45px;
+}
+
+.navbar {
+    transition: box-shadow 0.3s ease;
+}
+
 .navbar .nav-link {
     font-weight: 500;
     color: var(--text-color);
@@ -91,6 +111,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5rem 1rem;
     position: relative;
 }
+
 .navbar .nav-link::after {
     content: '';
     position: absolute;
@@ -102,10 +123,14 @@ h1, h2, h3, h4, h5, h6 {
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
-.navbar .nav-link:hover::after, .navbar .nav-link.active::after {
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
     transform: scaleX(1);
 }
-.navbar .nav-link:hover, .navbar .nav-link.active {
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
     color: var(--primary-color);
 }
 
@@ -116,7 +141,8 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #e9ecef;
     box-shadow: var(--shadow-medium);
     padding: 0.5rem 0;
-    margin-top: 0.5rem; /* Pequeño espacio entre el link y el menú */
+    margin-top: 0.5rem;
+    /* Pequeño espacio entre el link y el menú */
 }
 
 .dropdown-item {
@@ -128,7 +154,8 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
+.dropdown-item:hover,
+.dropdown-item:focus {
     background-color: var(--primary-color-light);
     color: var(--primary-color-darker);
 }
@@ -186,9 +213,18 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50%;
     margin-right: 6px;
 }
-.mockup-header span:nth-child(1) { background-color: #ff5f56; }
-.mockup-header span:nth-child(2) { background-color: #ffbd2e; }
-.mockup-header span:nth-child(3) { background-color: #27c93f; }
+
+.mockup-header span:nth-child(1) {
+    background-color: #ff5f56;
+}
+
+.mockup-header span:nth-child(2) {
+    background-color: #ffbd2e;
+}
+
+.mockup-header span:nth-child(3) {
+    background-color: #27c93f;
+}
 
 .dashboard-mockup img {
     display: block;
@@ -230,6 +266,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==================== 6. SECCIÓN NOSOTROS Y POLÍTICA ==================== */
+
+#nosotros {
+    background-image: url('./img/bannernuestraescencia.PNG');
+    /* o usa background-color: #f0f0f0; */
+    background-size: 65%;
+    /* Ajusta la imagen al tamaño del contenedor */
+    background-position: initial;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que se repita */
+}
+
+
 .policy-card {
     background-color: var(--light-color);
     padding: 2.5rem;
@@ -252,7 +301,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: var(--white-color);
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -282,13 +332,17 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 1.5rem;
     position: relative;
     margin-bottom: 0.75rem;
-    -webkit-column-break-inside: avoid; /* Webkit browsers */
-    page-break-inside: avoid; /* Firefox */
-    break-inside: avoid; /* Standard */
+    -webkit-column-break-inside: avoid;
+    /* Webkit browsers */
+    page-break-inside: avoid;
+    /* Firefox */
+    break-inside: avoid;
+    /* Standard */
 }
 
 .service-list li::before {
-    content: '\f058'; /* Font Awesome check-circle solid */
+    content: '\f058';
+    /* Font Awesome check-circle solid */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--primary-color);
@@ -341,21 +395,57 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-icon {
-    width: 60px; height: 60px;
+    width: 60px;
+    height: 60px;
     background-color: var(--primary-color-light);
     color: var(--primary-color);
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    font-size: 1.8rem; margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
 }
-.feature-title { font-size: 1.3rem; margin-bottom: 0.75rem; }
-.feature-description { font-size: 0.95rem; line-height: 1.6; }
+
+.feature-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
 
 /* ==================== 9. SECCIÓN EQUIPO (STAFF) ==================== */
+#equipo {
+    background-image: url('./img/bannerstaff.PNG');
+    /* o usa background-color: #f0f0f0; */
+    background-size: cover;
+    /* Ajusta la imagen al tamaño del contenedor */
+    background-position: right;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que se repita */
+}
+
+#equipo .section-title {
+    color: var(--white-color)
+        /* blanco */
+}
+
+#equipo .lead {
+    color: var(--white-color);
+    /* blanco */
+}
+
+
+
+
 .staff-card {
     text-align: center;
     background: var(--white-color);
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -365,46 +455,62 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
 }
+
 .staff-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-medium);
 }
+
 .staff-img {
     width: 150px;
     height: 150px;
-    object-fit: cover; /* MUY IMPORTANTE para que las fotos no se deformen */
+    object-fit: cover;
+    /* MUY IMPORTANTE para que las fotos no se deformen */
     border-radius: 50%;
     margin-bottom: 1.5rem;
     border: 5px solid var(--white-color);
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
+
 .staff-name {
     font-size: 1.25rem;
     margin-bottom: 0.25rem;
 }
+
 .staff-title {
     color: var(--primary-color);
     font-weight: 500;
 }
 
 /* ==================== 10. FORMULARIO DE CONTACTO ==================== */
-#form-feedback { font-weight: 500; }
-#form-feedback.success { color: #198754; }
-#form-feedback.error { color: #dc3545; }
+#form-feedback {
+    font-weight: 500;
+}
+
+#form-feedback.success {
+    color: #198754;
+}
+
+#form-feedback.error {
+    color: #dc3545;
+}
 
 /* ==================== 11. FOOTER ==================== */
 .footer-custom {
     background-color: var(--dark-color);
     color: rgba(255, 255, 255, 0.6);
 }
+
 .footer-link {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 0.3s;
 }
+
 .footer-link:hover {
     color: var(--white-color);
 }
+
 .footer-custom h5 {
     color: var(--white-color);
     font-weight: 600;
@@ -412,12 +518,14 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.5px;
     font-size: 1rem;
 }
+
 .social-icon {
     color: rgba(255, 255, 255, 0.6);
     font-size: 1.5rem;
     margin-right: 1rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
+
 .social-icon:hover {
     color: var(--primary-color);
     transform: translateY(-3px);
@@ -425,6 +533,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ==================== 12. MEDIA QUERIES PARA RESPONSIVIDAD ==================== */
 @media (max-width: 991.98px) {
+
     /* Apila el formulario de contacto en tablets */
     #demo-form .col-md-4,
     #demo-form .col-md-5 {
@@ -433,8 +542,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 767.98px) {
-    .hero-title { font-size: 2.5rem; }
-    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
     /* Pasa la lista de servicios a una sola columna */
     .service-list {
         columns: 1;
@@ -444,7 +555,7 @@ h1, h2, h3, h4, h5, h6 {
     .client-logos-container {
         gap: 2rem;
     }
-    
+
     /* Apila el formulario de contacto a una sola columna en móviles */
     #demo-form .col-md-3,
     #demo-form .col-md-4,
@@ -452,7 +563,9 @@ h1, h2, h3, h4, h5, h6 {
         flex: 0 0 100%;
         max-width: 100%;
     }
-    #demo-form .col-md-4, #demo-form .col-md-5 {
+
+    #demo-form .col-md-4,
+    #demo-form .col-md-5 {
         margin-bottom: 1rem;
     }
 }
