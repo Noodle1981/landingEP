@@ -1,0 +1,17 @@
+/* agro-specific.css */
+
+.hero-agro-section {
+    /* Usamos la imagen específica para la sección Agro */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/fitohero.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh; /* Ajusta la altura como necesites */
+    padding: 120px 0;
+}
+
+/* Ajuste para que los títulos blancos de esta sección sean más pesados */
+.hero-agro-section .hero-title,
+.hero-agro-section .hero-subtitle {
+    color: #ffffff;
+}
