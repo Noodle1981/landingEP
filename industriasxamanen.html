@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero PyME - Grupo Xamanen | Visibilidad Total en 2 Semanas</title>
+    <meta name="description" content="Sistema de gestión empresarial para PyMEs industriales. Dashboards en tiempo real + documentación HSE organizada. Implementación en 2 semanas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E3A5F;
+            --secondary: #2E7D32;
+            --accent: #FF6B35;
+            --bg-light: #F8F9FA;
+            --bg-dark: #0F172A;
+            --text-dark: #1A1A1A;
+            --text-gray: #64748B;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 17px;
+            overflow-x: hidden;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: overflow 0.3s;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* ADVANCED SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .rotate-in {
+            opacity: 0;
+            transform: rotate(-5deg) scale(0.9);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .rotate-in.visible {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .blur-in {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .blur-in.visible {
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateY(0);
+        }
+
+        /* STAGGER ANIMATIONS */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-item:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-item:nth-child(6) { transition-delay: 0.6s; }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav a:hover:after {
+            width: 100%;
+        }
+
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background: var(--accent);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background: var(--accent);
+        }
+
+        .hamburger:hover span {
+            background: var(--accent);
+        }
+
+        /* MOBILE MENU */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-menu a:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .mobile-menu a:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-menu a:nth-child(4) {
+            transition-delay: 0.25s;
+        }
+
+        .mobile-menu a:nth-child(5) {
+            transition-delay: 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            transform: scale(1.05) translateY(0);
+        }
+
+        .mobile-cta {
+            margin-top: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: 0.35s;
+        }
+
+        .mobile-menu.active .mobile-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 17px;
+            border-radius: 14px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #2C5282 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 40px 80px;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 125, 50, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text .highlight {
+            background: linear-gradient(120deg, var(--accent) 0%, #FFB84D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            font-weight: 400;
+            animation: fadeInUp 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            animation: fadeInUp 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(120deg, var(--white) 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .mockup-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mockup-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .mockup-screen {
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .floating-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* SECTION COMMON */
+        section {
+            padding: 120px 40px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(30, 58, 95, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* PROBLEMA SECTION */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #FFB84D);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .problem-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .problem-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* SOLUTION SECTION */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .module-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .module-header {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05), rgba(30, 58, 95, 0.02));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-header:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-body {
+            padding: 40px;
+        }
+
+        .module-body ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .module-body ul li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .module-body ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .module-quote {
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 20px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* STEPS SECTION */
+        .steps-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .steps-timeline {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--secondary) 100%);
+            transform: translateX(-50%);
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        .step:nth-child(even) .step-content {
+            order: 2;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), #FFB84D);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .step-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison-wrapper {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, var(--primary), #2C5282);
+            color: var(--white);
+        }
+
+        .comparison-table th {
+            padding: 24px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(30, 58, 95, 0.02);
+        }
+
+        .comparison-table .highlight {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(46, 125, 50, 0.05));
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* PRICING */
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 32px;
+            padding: 60px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+            border: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent), #FFB84D, var(--secondary));
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--accent), #FFB84D);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            font-weight: 800;
+        }
+
+        .price-main {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .price-monthly {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 32px 0 16px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 40px 0;
+            padding: 40px 0;
+            border-top: 2px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .features-list li {
+            padding: 16px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .features-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .guarantee {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 184, 77, 0.2), rgba(255, 107, 53, 0.1));
+            padding: 24px;
+            border-radius: 16px;
+            margin: 32px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2C5282 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg-dark);
+            color: var(--white);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .steps-timeline {
+                display: none;
+            }
+
+            .step {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .step:nth-child(even) .step-content {
+                order: 1;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .header-content {
+                padding: 16px 20px;
+            }
+
+            .header-content .btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .problems-grid,
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 40px 24px;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 16px 12px;
+            }
+
+            .mobile-menu a {
+                font-size: 1.5rem;
+            }
+
+            .mobile-menu-content {
+                gap: 24px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .mobile-menu a {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-menu {
+                display: none;
+            }
+        }
+
+        /* LOADING ANIMATION */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .loading {
+            animation: shimmer 2s infinite;
+            background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-size: 1000px 100%;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-gray);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Grupo Xamanen</div>
+            <nav class="nav">
+                <a href="#problema">Desafíos</a>
+                <a href="#solucion">Solución</a>
+                <a href="#como-funciona">Proceso</a>
+                <a href="#precio">Precio</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="#contacto" class="btn btn-primary">Agendar Demo</a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#problema" class="mobile-menu-link">Desafíos</a>
+            <a href="#solucion" class="mobile-menu-link">Solución</a>
+            <a href="#como-funciona" class="mobile-menu-link">Proceso</a>
+            <a href="#precio" class="mobile-menu-link">Precio</a>
+            <a href="#contacto" class="mobile-menu-link">Contacto</a>
+            <div class="mobile-cta">
+                <a href="#contacto" class="btn btn-primary btn-large">Agendar Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Visibilidad total de tu empresa y compliance resuelto.
+                    <span class="highlight">En 2 semanas.</span>
+                </h1>
+                <p>
+                    Sistema de gestión empresarial para PyMEs industriales.
+                    Dashboards en tiempo real + documentación HSE organizada.
+                    Precio fijo. Sin sorpresas.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#contacto" class="btn btn-primary btn-large">Quiero una demo</a>
+                    <a href="#como-funciona" class="btn btn-secondary btn-large">Ver cómo funciona</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat fade-in">
+                        <div class="stat-number">+10</div>
+                        <div class="stat-label">PyMEs confían en nosotros</div>
+                    </div>
+                    <div class="stat fade-in">
+                        <div class="stat-number">2 Sem</div>
+                        <div class="stat-label">Implementación rápida</div>
+                    </div>
+                    <div class="stat fade-in">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Soporte incluido</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="mockup-container">
+                    <div class="mockup-screen">
+                        <div class="floating-card">
+                            <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 12px;">Dashboard en Tiempo Real</h3>
+                            <p style="color: var(--text-gray); margin-bottom: 16px;">Toda tu operación visible</p>
+                            <div style="display: flex; gap: 12px;">
+                                <div style="flex: 1; height: 60px; background: linear-gradient(135deg, var(--accent), #FFB84D); border-radius: 8px;"></div>
+                                <div style="flex: 1; height: 60px; background: linear-gradient(135deg, var(--secondary), #4CAF50); border-radius: 8px;"></div>
+                                <div style="flex: 1; height: 60px; background: linear-gradient(135deg, var(--primary), #2C5282); border-radius: 8px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA SECTION -->
+    <section id="problema" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">EL PROBLEMA</span>
+                <h2 class="section-title">¿Te suena familiar?</h2>
+                <p class="section-subtitle">
+                    Identificamos los desafíos más comunes que frenan el crecimiento de PyMEs industriales
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">📊</div>
+                    <h3>"No sé cómo está mi empresa hasta fin de mes"</h3>
+                    <p>Tus números están en 5 excels diferentes, el contador tarda 2 semanas en darte un reporte, y cuando lo tienes ya es tarde para actuar.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">📁</div>
+                    <h3>"Cada auditoría es un caos"</h3>
+                    <p>Buscando certificados vencidos, constancias perdidas, capacitaciones sin registrar. Siempre con miedo de que te encuentren algo.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">⏰</div>
+                    <h3>"Paso más tiempo armando reportes que tomando decisiones"</h3>
+                    <p>Horas copiando datos de un lado a otro, armando gráficos en Excel que nadie mira, información que llega cuando ya no sirve.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💸</div>
+                    <h3>"Las soluciones que vi cuestan una fortuna"</h3>
+                    <p>ERPs de $50,000 USD, implementaciones de 6 meses, consultores que cobran por hora y nunca terminan.</p>
+                </div>
+            </div>
+            <div class="fade-in" style="text-align: center; font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-top: 80px; padding: 40px; background: var(--white); border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
+                Si tu empresa crece pero tu gestión sigue en Excel y papel,<br>
+                estás tomando decisiones a ciegas.
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUCIÓN SECTION -->
+    <section id="solucion">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">LA SOLUCIÓN</span>
+                <h2 class="section-title">Tablero PyME: Todo lo que necesitas</h2>
+                <p class="section-subtitle">
+                    Un sistema que conecta tus datos, organiza tu documentación y te muestra el estado real de tu empresa en tiempo real. Implementado en 2 semanas. Funcionando desde el día 1.
+                </p>
+            </div>
+            <div class="modules-grid">
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-icon">📈</div>
+                        <h3>VISIBILIDAD EN TIEMPO REAL</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            <li>Finanzas: Flujo de caja, cuentas por cobrar/pagar, márgenes</li>
+                            <li>Ventas: Pipeline, conversiones, clientes activos</li>
+                            <li>Operaciones: Producción, entregas, indicadores clave</li>
+                            <li>Alertas automáticas cuando algo se sale de rango</li>
+                        </ul>
+                        <div class="module-quote">
+                            "Sabé cómo está tu empresa sin esperar al contador"
+                        </div>
+                    </div>
+                </div>
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-icon">✅</div>
+                        <h3>COMPLIANCE HSE RESUELTO</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            <li>Gestión documental digitalizada</li>
+                            <li>Control de vencimientos automático</li>
+                            <li>Checklists de auditoría configurables</li>
+                            <li>Constancias y certificados organizados</li>
+                            <li>Historial completo y trazable</li>
+                        </ul>
+                        <div class="module-quote">
+                            "Pasá cualquier auditoría sin stress"
+                        </div>
+                    </div>
+                </div>
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-icon">🛠️</div>
+                        <h3>SOPORTE INCLUIDO</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            <li>Mantenimiento y actualizaciones</li>
+                            <li>Respuesta en menos de 24 horas</li>
+                            <li>Capacitación para tu equipo</li>
+                            <li>Sin costos ocultos ni sorpresas</li>
+                        </ul>
+                        <div class="module-quote">
+                            "No te dejamos solo después de la implementación"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA SECTION -->
+    <section id="como-funciona" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">EL PROCESO</span>
+                <h2 class="section-title">De cero a funcionando en 14 días</h2>
+                <p class="section-subtitle">
+                    Sin implementaciones eternas. Sin consultorías de meses. Tu sistema listo en 2 semanas.
+                </p>
+            </div>
+            <div class="steps-container">
+                <div class="steps-timeline"></div>
+                <div class="step fade-in">
+                    <div class="step-visual">
+                        <div class="step-number">1</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>📞 SEMANA 0: KICKOFF</h3>
+                        <p>Nos reunimos 1 hora. Entendemos tu negocio, identificamos qué datos tienes y qué necesitas ver. Sin consultorías eternas ni diagnósticos de 3 meses.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-visual">
+                        <div class="step-number">2</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>⚙️ SEMANA 1: CONFIGURACIÓN</h3>
+                        <p>Conectamos tus fuentes de datos (Excel, sistemas, APIs). Armamos tus dashboards personalizados. Configuramos el módulo de compliance para tu industria.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-visual">
+                        <div class="step-number">3</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>🚀 SEMANA 2: GO-LIVE</h3>
+                        <p>Capacitamos a tu equipo. Activamos el sistema en producción. Te acompañamos los primeros días para asegurar que funcione.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-visual">
+                        <div class="step-number">4</div>
+                    </div>
+                    <div class="step-content">
+                        <h3>📊 DÍA 15 EN ADELANTE</h3>
+                        <p>Tu empresa visible. Tu compliance organizado. Soporte continuo incluido en tu plan mensual.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-in" style="text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-top: 60px;">
+                Sin implementaciones de 6 meses. Sin consultores que cobran por hora. Sin sorpresas.
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARATIVA SECTION -->
+    <section>
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">COMPARACIÓN</span>
+                <h2 class="section-title">¿Por qué Tablero PyME?</h2>
+            </div>
+            <div class="comparison-wrapper fade-in">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Soluciones tradicionales</th>
+                            <th class="highlight">Tablero PyME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tiempo de implementación</strong></td>
+                            <td>3-6 meses</td>
+                            <td class="highlight">2 semanas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precio</strong></td>
+                            <td>$20,000-100,000 USD</td>
+                            <td class="highlight">$5,000 USD</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Necesita equipo de IT interno</strong></td>
+                            <td>Sí</td>
+                            <td class="highlight">No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Soporte incluido</strong></td>
+                            <td>Extra (costoso)</td>
+                            <td class="highlight">Sí</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compliance HSE integrado</strong></td>
+                            <td>Separado</td>
+                            <td class="highlight">Integrado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Funciona con tus datos actuales</strong></td>
+                            <td>"Hay que migrar todo"</td>
+                            <td class="highlight">Sí, conectamos lo que tengas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="precio" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">INVERSIÓN</span>
+                <h2 class="section-title">Precio claro. Sin sorpresas.</h2>
+            </div>
+            <div class="pricing-card scale-in">
+                <span class="pricing-badge">TABLERO PYME COMPLETO</span>
+                <div class="price-main">$5,000 USD</div>
+                <p style="text-align: center; color: var(--text-gray); font-size: 1.1rem;">Implementación única</p>
+                <div class="price-monthly">+ $240 USD/mes</div>
+                <p style="text-align: center; color: var(--text-gray); font-size: 1.1rem;">Mantenimiento y soporte</p>
+
+                <ul class="features-list">
+                    <li>Dashboards de finanzas, ventas y operaciones</li>
+                    <li>Módulo de compliance HSE completo</li>
+                    <li>Conexión con tus datos actuales</li>
+                    <li>Capacitación para tu equipo</li>
+                    <li>Alertas y notificaciones automáticas</li>
+                    <li>Soporte en menos de 24 horas</li>
+                    <li>Actualizaciones incluidas</li>
+                </ul>
+
+                <div style="text-align: center; color: var(--text-gray); margin: 32px 0; line-height: 1.8;">
+                    50% de adelanto para comenzar<br>
+                    50% al finalizar la implementación
+                </div>
+
+                <div class="guarantee">
+                    💬 "Si en 30 días no ves valor, te devolvemos el dinero."
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="#contacto" class="btn btn-primary btn-large" style="width: 100%;">Agendar llamada de 15 minutos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARA QUIÉN ES -->
+    <section>
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">¿ES PARA VOS?</span>
+                <h2 class="section-title">¿Es para tu empresa?</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
+                <div class="fade-in" style="background: var(--white); padding: 50px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-left: 6px solid var(--secondary);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 32px; display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 2rem;">✅</span> ES PARA VOS SI:
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Tenés entre 10 y 100 empleados
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Tu gestión actual depende de Excel y papel
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Querés tomar decisiones basadas en datos, no intuición
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Necesitás pasar auditorías sin stress
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Buscás una solución que funcione YA, no en 6 meses
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7;">
+                            <span style="position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.3rem;">✓</span>
+                            Valorás el soporte local y en español
+                        </li>
+                    </ul>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 50px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-left: 6px solid var(--text-gray); opacity: 0.8;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 32px; display: flex; align-items: center; gap: 12px; color: var(--text-gray);">
+                        <span style="font-size: 2rem;">❌</span> NO ES PARA VOS SI:
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7; color: var(--text-gray);">
+                            <span style="position: absolute; left: 0; font-size: 1.3rem;">✗</span>
+                            Ya tenés un ERP funcionando bien
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7; color: var(--text-gray);">
+                            <span style="position: absolute; left: 0; font-size: 1.3rem;">✗</span>
+                            Buscás un sistema 100% custom (hacemos 80% estándar)
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7; color: var(--text-gray);">
+                            <span style="position: absolute; left: 0; font-size: 1.3rem;">✗</span>
+                            No tenés datos digitales (ni siquiera Excel)
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 40px; position: relative; line-height: 1.7; color: var(--text-gray);">
+                            <span style="position: absolute; left: 0; font-size: 1.3rem;">✗</span>
+                            Querés "ver qué pasa" sin compromiso
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Preguntas frecuentes</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 24px;">
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Qué pasa si mis datos están en Excel desordenados?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">No hay problema. Parte de la implementación incluye conectar y ordenar tus datos actuales. No necesitás tener todo perfecto antes de empezar.</p>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Necesito contratar a alguien de sistemas?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">No. El sistema está diseñado para que cualquier persona lo use. Y el soporte técnico está incluido en tu plan mensual.</p>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Funciona para mi industria específica?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">Trabajamos con PyMEs industriales: metalmecánica, servicios industriales, automatización, proveedores mineros, y más. Si tu empresa necesita gestión + compliance, es para vos.</p>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Qué pasa si necesito algo que no está incluido?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">El 80% de las necesidades están cubiertas con el sistema estándar. Si necesitás algo específico, lo evaluamos y te damos un presupuesto transparente antes de empezar.</p>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Por qué es tan rápido si otros tardan meses?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">Porque no vendemos consultoría ni implementaciones infinitas. Tenemos un sistema probado que se configura, no se construye desde cero. Por eso 2 semanas, no 6 meses.</p>
+                </div>
+                <div class="fade-in" style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 16px; color: var(--primary);">¿Qué incluye el mantenimiento mensual de $240?</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8;">Hosting y servidores • Actualizaciones del sistema • Soporte técnico (respuesta &lt;24h) • Backups automáticos • Ajustes menores de configuración</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <div class="cta-content fade-in">
+            <h2>¿Listo para ver tu empresa con claridad?</h2>
+            <p>
+                En 15 minutos te mostramos cómo funciona.<br>
+                Sin compromiso. Sin presentaciones de 2 horas.<br>
+                Solo lo que necesitás saber para decidir.
+            </p>
+            <a href="#contacto" class="btn btn-primary btn-large">Agendar demo de 15 minutos</a>
+            <p style="margin-top: 32px; font-size: 1.1rem; opacity: 0.9;">
+                ¿Preferís escribirnos?<br>
+                <a href="mailto:info@xamanen.com" style="color: var(--white); text-decoration: underline;">info@xamanen.com</a> |
+                <a href="https://wa.me/5492644000000" style="color: var(--white); text-decoration: underline;">WhatsApp</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO CONTACTO -->
+    <section id="contacto" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">CONTACTO</span>
+                <h2 class="section-title">Hablemos</h2>
+            </div>
+            <div class="scale-in" style="max-width: 600px; margin: 0 auto; background: var(--white); padding: 60px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);">
+                <form id="contactForm">
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary);">Nombre:</label>
+                        <input type="text" required style="width: 100%; padding: 16px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary);">Empresa:</label>
+                        <input type="text" required style="width: 100%; padding: 16px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary);">Teléfono/WhatsApp:</label>
+                        <input type="tel" required style="width: 100%; padding: 16px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary);">¿Cuántos empleados tiene tu empresa?:</label>
+                        <select required style="width: 100%; padding: 16px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'">
+                            <option value="">Seleccionar...</option>
+                            <option value="1-10">1-10</option>
+                            <option value="11-50">11-50</option>
+                            <option value="51-100">51-100</option>
+                            <option value="100+">100+</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 32px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary);">¿Cuál es tu mayor dolor hoy? (opcional):</label>
+                        <textarea style="width: 100%; padding: 16px; border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; font-size: 1rem; min-height: 100px; resize: vertical; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Quiero que me contacten</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Grupo Xamanen</h4>
+                <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.7;">
+                    Tecnología para la industria que quiere crecer.<br>
+                    San Juan, Argentina
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <a href="#problema">Desafíos</a>
+                <a href="#solucion">Solución</a>
+                <a href="#como-funciona">Proceso</a>
+                <a href="#precio">Precio</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <a href="mailto:info@xamanen.com">info@xamanen.com</a>
+                <a href="https://wa.me/5492644000000">WhatsApp</a>
+                <a href="https://linkedin.com/company/xamanen" target="_blank">LinkedIn</a>
+            </div>
+            <div class="footer-section">
+                <h4>Certificaciones</h4>
+                <p style="color: rgba(255, 255, 255, 0.7);">
+                    🏭 Miembro de Unión Industrial de San Juan
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Grupo Xamanen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // MOBILE MENU TOGGLE
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        const body = document.body;
+
+        function toggleMobileMenu() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+        // Close menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Close menu on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // HEADER SCROLL EFFECT
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // FORM SUBMISSION
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Animación del botón
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '✓ Enviando...';
+            submitBtn.style.background = 'var(--secondary)';
+
+            setTimeout(() => {
+                alert('¡Gracias! Te contactamos en menos de 24 horas.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = 'var(--accent)';
+            }, 1500);
+        });
+
+        // PARALLAX EFFECT ON HERO
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-visual');
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // BUTTON RIPPLE EFFECT
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // COUNTER ANIMATION FOR STATS
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation when stats are visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        if (text.includes('+')) {
+                            const num = parseInt(text.replace('+', ''));
+                            stat.textContent = '0';
+                            animateCounter(stat, num);
+                            stat.textContent = '+' + stat.textContent;
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
+    </script>
+</body>
+</html>

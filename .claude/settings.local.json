@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:qclay.design)",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\Administrador\\\\Desktop\\\\Xamanen-Landing\\\\landingEP\\\\Estrategia_Marca_Industrias_Xamanen_v2.docx'' -Raw\")",
+      "Bash(python -c:*)",
+      "WebFetch(domain:careers.roblox.com)"
+    ]
+  }
+}
