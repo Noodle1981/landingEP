@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8"/>
 <link href="img/isologo_industrias_xamanen.png" rel="icon" type="image/png"/>
@@ -64,8 +64,203 @@
     }
 </style>
 <title>Xamanen | Plataforma HSE para Consultoras</title>
+
+<!-- Lenis smooth scroll -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<style>
+/* ================================================================
+   PREMIUM INTERACTIONS
+   ================================================================ */
+
+/* Hide default cursor on pointer devices */
+@media (hover: hover) {
+    *, *::before, *::after { cursor: none !important; }
+}
+
+/* Custom cursor */
+.cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 7px; height: 7px;
+    background: #00D1C1;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    will-change: left, top;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(0,209,193,0.55);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    will-change: left, top;
+    opacity: 0;
+    transition: width 0.35s cubic-bezier(0.16,1,0.3,1),
+                height 0.35s cubic-bezier(0.16,1,0.3,1),
+                background-color 0.35s,
+                border-color 0.35s,
+                border-radius 0.35s,
+                opacity 0.3s;
+}
+.cursor-ring.hover-state {
+    width: 62px; height: 62px;
+    background-color: rgba(0,209,193,0.08);
+    border-color: #00D1C1;
+}
+.cursor-ring.click-state {
+    width: 22px; height: 22px;
+    background-color: rgba(0,209,193,0.25);
+}
+.cursor-ring.text-state {
+    width: 3px; height: 30px;
+    border-radius: 2px;
+    background-color: rgba(0,209,193,0.7);
+    border-color: transparent;
+}
+.cursor-visible { opacity: 1; }
+
+/* Animated film grain — wrapper clips to viewport, SVG is absolute inside */
+#grain-wrap {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 99990;
+}
+.grain-overlay {
+    position: absolute;
+    top: -15%; left: -15%;
+    width: 130%; height: 130%;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    animation: grain-shift 0.5s steps(1) infinite;
+}
+@keyframes grain-shift {
+    0%   { transform: translate(0, 0); }
+    10%  { transform: translate(-3%, -4%); }
+    20%  { transform: translate(4%, 2%); }
+    30%  { transform: translate(-2%, 5%); }
+    40%  { transform: translate(5%, -2%); }
+    50%  { transform: translate(-4%, 4%); }
+    60%  { transform: translate(3%, -5%); }
+    70%  { transform: translate(-5%, 2%); }
+    80%  { transform: translate(2%, 4%); }
+    90%  { transform: translate(4%, -2%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Hero H1 line reveal */
+.hero-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+}
+.hero-line-inner {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-line-inner.revealed {
+    transform: translateY(0);
+}
+
+/* Magnetic wrapper */
+.magnetic {
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Nav active link */
+.nav-link { position: relative; }
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: #00D1C1;
+    transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-link:hover::after,
+.nav-link.active-section::after { width: 100%; }
+
+/* Platform 3D tilt */
+#platform-showcase {
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Benefit visual hover zoom */
+.benefit-visual {
+    overflow: hidden;
+}
+.benefit-visual > div {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.benefit-visual:hover > div {
+    transform: scale(1.03);
+}
+
+/* Testimonial card hover lift */
+.t-card {
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s !important;
+}
+.t-card:hover {
+    transform: translateY(-10px) !important;
+}
+
+/* Form inputs */
+#demo-form input {
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+#demo-form input:hover {
+    border-color: rgba(0,209,193,0.35);
+}
+#demo-form input:focus {
+    border-color: #00D1C1;
+    box-shadow: 0 0 0 4px rgba(0,209,193,0.12);
+}
+
+/* Prevent any overflow from fixed/animated elements triggering scrollbars */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Page load fade-in */
+body {
+    animation: page-in 0.7s ease both;
+}
+@keyframes page-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+</style>
 </head>
 <body class="selection:bg-accent selection:text-primary">
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+<!-- Animated film grain overlay (clipped by fixed wrapper to avoid scrollbar) -->
+<div id="grain-wrap" aria-hidden="true">
+    <svg class="grain-overlay" xmlns="http://www.w3.org/2000/svg">
+        <filter id="grain-filter" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch"/>
+            <feColorMatrix type="saturate" values="0"/>
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+    </svg>
+</div>
 
 <!-- ============================================================
      NAVIGATION
@@ -81,10 +276,11 @@
 
             <!-- Desktop Nav -->
             <div class="hidden lg:flex items-center space-x-10">
-                <a class="font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#producto">Producto</a>
-                <a class="font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#soluciones">Soluciones</a>
-                <a class="font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#software">Software</a>
-                <a class="font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#precios">Precios</a>
+                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#producto">Producto</a>
+                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#soluciones">Soluciones</a>
+                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#software">Software</a>
+                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#precios">Precios</a>
+                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#blog">Blog</a>
             </div>
 
             <!-- Desktop CTAs -->
@@ -110,6 +306,7 @@
             <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#soluciones">Soluciones</a>
             <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#software">Software</a>
             <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#precios">Precios</a>
+            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#blog">Blog</a>
             <a href="#contacto" class="block w-full text-center bg-primary text-white dark:bg-accent dark:text-primary px-8 py-4 text-xs font-black uppercase tracking-[0.3em] mt-4">Agendar Demo Gratis</a>
         </div>
     </div>
@@ -120,7 +317,7 @@
      ============================================================ -->
 <header class="relative min-h-[95vh] flex flex-col justify-end overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img alt="Seguridad e Higiene Industrial" class="w-full h-full object-cover filter blur-[2px] opacity-60 grayscale-[30%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTF5ZPb1QUXwOFJVFDqZCJSTXzN5CdZBl9qzVQKkNWCW_s8yvz6pw4_tatHPTsjExJcXQEOzI4Js9CMPagTRbzuj5ByFQzi7wETHB9xu75rVyhBzbqkaq7oQtfpC0QLYIpvYJyLI8HoH2IIjlCRT2KenBebYVTS-A-9uBJUtXcSPPJERu_ttKWtq2fS_807TTKKA_04G1Ttwx3_XDXjcuk0yaN9TnAFTFgMKUMyPldi3UhDNHse-76urZeJHJ_gWZR4XkSszn9fZMW"/>
+        <img alt="Análisis HSE" class="w-full h-full object-cover object-center filter blur-[2px] opacity-55 grayscale-[20%]" src="img/analisis.png"/>
         <div class="absolute inset-0 hero-gradient-overlay"></div>
     </div>
 
@@ -129,17 +326,18 @@
             <!-- Eyebrow -->
             <div class="font-display text-xs font-bold uppercase tracking-[0.5em] text-accent mb-10 flex items-center gap-5">
                 <span class="w-12 h-[1px] bg-accent"></span>
-                Gestión HSE Inteligente para Consultoras
+                Plataforma HSE · Para Consultoras
             </div>
 
             <!-- H1 -->
             <h1 class="text-6xl lg:text-[9rem] font-display font-extrabold text-primary dark:text-white leading-[0.85] tracking-tight mb-10">
-                Automatice sus <br/>Auditorías <span class="italic font-serif font-light text-slate-400">HSE</span><br/>y Escale su <span class="relative inline-block">Consultora.<span class="absolute -bottom-2 left-0 w-full h-4 bg-accent/20 -z-10"></span></span>
+                <span class="hero-line"><span class="hero-line-inner">Escale su</span></span>
+                <span class="hero-line"><span class="hero-line-inner"><span class="relative inline-block">Consultora.<span class="absolute -bottom-2 left-0 w-full h-4 bg-accent/20 -z-10"></span></span></span></span>
             </h1>
 
             <!-- Subheadline -->
-            <p class="text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-serif leading-relaxed italic border-l-4 border-accent pl-8 py-2 max-w-2xl mb-10">
-                La plataforma SaaS integral para consultoras de Seguridad e Higiene. Elimine el papeleo, capture firmas digitales en campo y genere reportes profesionales al instante.
+            <p class="text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-serif leading-relaxed italic border-l-4 border-accent pl-8 py-2 max-w-xl mb-10">
+                Del campo al cliente: informes HSE en minutos, no días.
             </p>
 
             <!-- Social proof micro -->
@@ -158,11 +356,11 @@
 
             <!-- CTAs -->
             <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                <a href="#contacto" class="bg-primary text-white dark:bg-accent dark:text-primary px-10 py-5 text-xs font-black uppercase tracking-[0.3em] hover:shadow-2xl hover:-translate-y-[2px] transition-all inline-flex items-center justify-center gap-3">
+                <a href="#contacto" class="magnetic bg-primary text-white dark:bg-accent dark:text-primary px-10 py-5 text-xs font-black uppercase tracking-[0.3em] hover:shadow-2xl transition-all inline-flex items-center justify-center gap-3">
                     <span class="material-symbols-outlined text-base leading-none">rocket_launch</span>
                     Solicitar Demo Gratis
                 </a>
-                <a href="#software" class="flex items-center justify-center gap-3 px-10 py-5 border border-slate-300 dark:border-slate-700 text-xs font-black uppercase tracking-[0.3em] hover:bg-white dark:hover:bg-slate-800 transition-all">
+                <a href="#software" class="magnetic flex items-center justify-center gap-3 px-10 py-5 border border-slate-300 dark:border-slate-700 text-xs font-black uppercase tracking-[0.3em] hover:bg-white dark:hover:bg-slate-800 transition-all">
                     <span class="material-symbols-outlined text-base leading-none">play_circle</span>
                     Ver la Plataforma
                 </a>
@@ -210,19 +408,19 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0 lg:divide-x divide-white/10">
             <div class="reveal text-center lg:px-12">
-                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2">200<span class="text-accent">+</span></div>
+                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2"><span class="stat-val" data-count="200" data-suffix="+">200+</span></div>
                 <div class="text-[10px] font-display font-bold uppercase tracking-[0.3em] text-slate-400">Consultoras activas</div>
             </div>
             <div class="reveal reveal-d1 text-center lg:px-12">
-                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2">50k<span class="text-accent">+</span></div>
+                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2"><span class="stat-val" data-count="50" data-suffix="k+">50k+</span></div>
                 <div class="text-[10px] font-display font-bold uppercase tracking-[0.3em] text-slate-400">Inspecciones realizadas</div>
             </div>
             <div class="reveal reveal-d2 text-center lg:px-12">
-                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2">98<span class="text-accent">%</span></div>
+                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2"><span class="stat-val" data-count="98" data-suffix="%">98%</span></div>
                 <div class="text-[10px] font-display font-bold uppercase tracking-[0.3em] text-slate-400">Tasa de retención</div>
             </div>
             <div class="reveal reveal-d3 text-center lg:px-12">
-                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2">6<span class="text-accent">h</span></div>
+                <div class="text-5xl lg:text-6xl font-display font-black text-white mb-2"><span class="stat-val" data-count="6" data-suffix="h">6h</span></div>
                 <div class="text-[10px] font-display font-bold uppercase tracking-[0.3em] text-slate-400">Ahorro por informe</div>
             </div>
         </div>
@@ -254,7 +452,7 @@
                 <!-- Benefit 1 -->
                 <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-900 overflow-hidden relative">
+                        <div class="benefit-visual aspect-[4/3] bg-slate-100 dark:bg-slate-900 overflow-hidden relative">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <span class="material-symbols-outlined text-[200px] text-accent/20 font-thin absolute scale-150 rotate-12">auto_awesome</span>
                                 <div class="w-56 h-56 border-2 border-accent/30 rounded-full flex items-center justify-center animate-pulse">
@@ -283,7 +481,7 @@
                 <!-- Benefit 2 -->
                 <div class="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="aspect-[4/3] bg-primary overflow-hidden relative">
+                        <div class="benefit-visual aspect-[4/3] bg-primary overflow-hidden relative">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <span class="material-symbols-outlined text-[200px] text-accent/30 font-thin absolute scale-125 -rotate-12">description</span>
                             </div>
@@ -309,7 +507,7 @@
                 <!-- Benefit 3 -->
                 <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="aspect-[4/3] bg-accent/10 dark:bg-slate-900 overflow-hidden relative border border-accent/20">
+                        <div class="benefit-visual aspect-[4/3] bg-accent/10 dark:bg-slate-900 overflow-hidden relative border border-accent/20">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <span class="material-symbols-outlined text-[200px] text-accent/30 font-thin absolute scale-125 rotate-6">draw</span>
                             </div>
@@ -353,7 +551,7 @@
 
             <div class="relative reveal">
                 <div class="absolute -inset-4 bg-accent/5 rounded-3xl blur-3xl"></div>
-                <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60">
+                <div id="platform-showcase" class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60">
                     <img src="img/page_platform.png" alt="Plataforma Xamanen — Dashboard HSE" class="w-full h-auto"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent pointer-events-none"></div>
                 </div>
@@ -368,38 +566,87 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="proceso" class="py-24 bg-white dark:bg-background-dark">
+    <section id="proceso" class="py-32 bg-white dark:bg-background-dark">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
-            <div class="text-center mb-20 reveal">
-                <div class="font-display text-xs font-bold uppercase tracking-[0.5em] text-accent mb-6 flex items-center justify-center gap-4">
-                    <span class="w-8 h-[1px] bg-accent"></span>Proceso<span class="w-8 h-[1px] bg-accent"></span>
+
+            <div class="max-w-2xl mb-20 reveal">
+                <div class="font-display text-xs font-bold uppercase tracking-[0.5em] text-accent mb-6 flex items-center gap-5">
+                    <span class="w-10 h-[1px] bg-accent"></span>Cómo funciona
                 </div>
-                <h2 class="text-4xl lg:text-6xl font-display font-black text-primary dark:text-white">
-                    Del contrato al campo<br/>en <span class="text-accent italic font-serif font-light">menos de 2 semanas.</span>
+                <h2 class="text-5xl lg:text-7xl font-display font-black text-primary dark:text-white leading-[0.9]">
+                    Del contrato<br/>al campo en <span class="text-accent italic font-serif font-light">2 semanas.</span>
                 </h2>
             </div>
-            <div class="grid md:grid-cols-4 gap-6 relative">
-                <div class="absolute top-8 left-[14%] right-[14%] h-[1px] bg-accent/20 hidden md:block"></div>
-                <div class="space-y-5 text-center px-4 reveal">
-                    <div class="w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl mx-auto relative z-10 shadow-lg shadow-accent/20">01</div>
-                    <h3 class="text-lg font-display font-bold text-primary dark:text-white">Consultoría</h3>
-                    <p class="text-sm text-slate-500 font-serif italic px-2">Análisis de sus flujos actuales e identificación de oportunidades de mejora.</p>
+
+            <!-- Vertical steps -->
+            <div class="relative max-w-3xl">
+                <!-- Connector line -->
+                <div class="absolute left-8 top-10 bottom-10 w-[1px] bg-gradient-to-b from-accent via-accent/30 to-transparent hidden lg:block pointer-events-none"></div>
+
+                <!-- Step 01 -->
+                <div class="relative flex gap-8 lg:gap-16 pb-16 reveal">
+                    <div class="shrink-0 w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl shadow-lg shadow-accent/30 relative z-10">01</div>
+                    <div class="flex-1 border-b border-slate-100 dark:border-white/5 pb-16">
+                        <span class="font-display text-[10px] font-bold text-accent uppercase tracking-[0.4em] block mb-3">Día 1</span>
+                        <h3 class="text-3xl lg:text-4xl font-display font-bold text-primary dark:text-white mb-4">Consultoría sin costo</h3>
+                        <p class="text-lg font-serif italic text-slate-500 dark:text-slate-400 leading-relaxed mb-6 max-w-lg">
+                            Analizamos sus flujos actuales e identificamos exactamente dónde pierde tiempo y dinero. Sin compromiso.
+                        </p>
+                        <a href="#contacto" class="inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-[0.3em] text-accent group">
+                            Agendar consulta gratuita
+                            <span class="material-symbols-outlined text-sm leading-none transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="space-y-5 text-center px-4 reveal reveal-d1">
-                    <div class="w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl mx-auto relative z-10 shadow-lg shadow-accent/20">02</div>
-                    <h3 class="text-lg font-display font-bold text-primary dark:text-white">Demo Técnica</h3>
-                    <p class="text-sm text-slate-500 font-serif italic px-2">Prueba real con sus propios protocolos en un entorno de sandbox.</p>
+
+                <!-- Step 02 -->
+                <div class="relative flex gap-8 lg:gap-16 pb-16 reveal">
+                    <div class="shrink-0 w-16 h-16 bg-slate-100 dark:bg-slate-800 text-primary dark:text-white rounded-2xl flex items-center justify-center font-display font-black text-xl relative z-10 border border-accent/20">02</div>
+                    <div class="flex-1 border-b border-slate-100 dark:border-white/5 pb-16">
+                        <span class="font-display text-[10px] font-bold text-accent uppercase tracking-[0.4em] block mb-3">Día 2–3</span>
+                        <h3 class="text-3xl lg:text-4xl font-display font-bold text-primary dark:text-white mb-4">Demo con sus datos reales</h3>
+                        <p class="text-lg font-serif italic text-slate-500 dark:text-slate-400 leading-relaxed mb-6 max-w-lg">
+                            Pruebe la plataforma con sus propios protocolos. Vea sus reportes, su firma digital y cómo opera su inspector en campo.
+                        </p>
+                        <a href="#software" class="inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-[0.3em] text-accent group">
+                            Ver la plataforma en acción
+                            <span class="material-symbols-outlined text-sm leading-none transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="space-y-5 text-center px-4 reveal reveal-d2">
-                    <div class="w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl mx-auto relative z-10 shadow-lg shadow-accent/20">03</div>
-                    <h3 class="text-lg font-display font-bold text-primary dark:text-white">Configuración</h3>
-                    <p class="text-sm text-slate-500 font-serif italic px-2">Cargamos sus protocolos personalizados al sistema en menos de 72h.</p>
+
+                <!-- Step 03 -->
+                <div class="relative flex gap-8 lg:gap-16 pb-16 reveal">
+                    <div class="shrink-0 w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl shadow-lg shadow-accent/30 relative z-10">03</div>
+                    <div class="flex-1 border-b border-slate-100 dark:border-white/5 pb-16">
+                        <span class="font-display text-[10px] font-bold text-accent uppercase tracking-[0.4em] block mb-3">Día 4–7</span>
+                        <h3 class="text-3xl lg:text-4xl font-display font-bold text-primary dark:text-white mb-4">Configuración personalizada</h3>
+                        <p class="text-lg font-serif italic text-slate-500 dark:text-slate-400 leading-relaxed mb-6 max-w-lg">
+                            Cargamos todos sus checklists, protocolos y plantillas de reporte. Listos en 72h. Sin trabajo extra de su parte.
+                        </p>
+                        <a href="#precios" class="inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-[0.3em] text-accent group">
+                            Ver planes disponibles
+                            <span class="material-symbols-outlined text-sm leading-none transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="space-y-5 text-center px-4 reveal reveal-d3">
-                    <div class="w-16 h-16 bg-accent text-primary rounded-2xl flex items-center justify-center font-display font-black text-xl mx-auto relative z-10 shadow-lg shadow-accent/20">04</div>
-                    <h3 class="text-lg font-display font-bold text-primary dark:text-white">Implementación</h3>
-                    <p class="text-sm text-slate-500 font-serif italic px-2">Puesta en marcha con onboarding del equipo y soporte dedicado 24/7.</p>
+
+                <!-- Step 04 -->
+                <div class="relative flex gap-8 lg:gap-16 reveal">
+                    <div class="shrink-0 w-16 h-16 bg-slate-100 dark:bg-slate-800 text-primary dark:text-white rounded-2xl flex items-center justify-center font-display font-black text-xl relative z-10 border border-accent/20">04</div>
+                    <div class="flex-1">
+                        <span class="font-display text-[10px] font-bold text-accent uppercase tracking-[0.4em] block mb-3">Semana 2</span>
+                        <h3 class="text-3xl lg:text-4xl font-display font-bold text-primary dark:text-white mb-4">Puesta en marcha total</h3>
+                        <p class="text-lg font-serif italic text-slate-500 dark:text-slate-400 leading-relaxed mb-8 max-w-lg">
+                            Onboarding del equipo, acompañamiento en las primeras inspecciones y soporte 24/7. De aquí en adelante, solo escala.
+                        </p>
+                        <a href="#contacto" class="magnetic inline-flex items-center gap-3 bg-accent text-primary px-8 py-4 text-xs font-display font-black uppercase tracking-[0.3em] hover:shadow-xl hover:shadow-accent/30 transition-all">
+                            <span class="material-symbols-outlined text-sm leading-none">rocket_launch</span>
+                            Empezar ahora
+                        </a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -416,7 +663,7 @@
                 </h2>
             </div>
             <div class="grid lg:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-slate-900 p-10 rounded-3xl border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-xl transition-shadow reveal flex flex-col">
+                <div class="t-card bg-white dark:bg-slate-900 p-10 rounded-3xl border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-xl reveal flex flex-col">
                     <div class="text-amber-400 text-sm mb-6">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <p class="text-lg font-serif italic text-slate-600 dark:text-slate-400 leading-relaxed flex-grow mb-8">
                         "Reducimos el tiempo de entrega de informes de 3 días a 2 horas. Pasamos de atender 15 clientes a más de 40 con el mismo equipo. El ROI fue inmediato."
@@ -442,7 +689,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-10 rounded-3xl border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-xl transition-shadow reveal reveal-d2 flex flex-col">
+                <div class="t-card bg-white dark:bg-slate-900 p-10 rounded-3xl border border-slate-100 dark:border-white/5 shadow-sm hover:shadow-xl reveal reveal-d2 flex flex-col">
                     <div class="text-amber-400 text-sm mb-6">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <p class="text-lg font-serif italic text-slate-600 dark:text-slate-400 leading-relaxed flex-grow mb-8">
                         "Implementamos Xamanen en 2 semanas. El equipo en campo adoptó la app sin fricciones. Eliminamos la papelería por completo y los errores de transcripción desaparecieron."
@@ -582,6 +829,86 @@
         </div>
     </section>
 
+    <!-- NEWSLETTER / BLOG -->
+    <section id="blog" class="py-32 bg-primary overflow-hidden">
+        <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+                <!-- Left: Newsletter signup -->
+                <div class="reveal">
+                    <div class="font-display text-xs font-bold uppercase tracking-[0.5em] text-accent mb-8 flex items-center gap-5">
+                        <span class="w-10 h-[1px] bg-accent"></span>Recursos & Blog HSE
+                    </div>
+                    <h2 class="text-5xl lg:text-6xl font-display font-black text-white mb-6 leading-[0.9]">
+                        Manténgase un paso<br/><span class="text-accent italic font-serif font-light">adelante.</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 font-serif italic leading-relaxed mb-10 max-w-md">
+                        Normativas actualizadas, estrategias de crecimiento y casos reales para consultoras HSE. Directo a su correo, sin spam.
+                    </p>
+                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 mb-4">
+                        <input
+                            type="email"
+                            placeholder="su@email.com"
+                            required
+                            class="flex-1 px-5 py-4 bg-white/10 border border-white/20 text-white placeholder-white/30 font-medium text-sm outline-none focus:border-accent focus:bg-white/15 transition-all"
+                        />
+                        <button type="submit" id="newsletter-btn" class="magnetic px-8 py-4 bg-accent text-primary font-display font-black text-xs uppercase tracking-[0.3em] hover:brightness-110 transition-all whitespace-nowrap">
+                            Suscribirse
+                        </button>
+                    </form>
+                    <p class="text-[10px] font-display text-slate-500 uppercase tracking-wider">+500 consultores suscritos · Cancele cuando quiera</p>
+                </div>
+
+                <!-- Right: Article previews -->
+                <div class="space-y-3 reveal reveal-d1">
+                    <a href="#" class="group flex items-start gap-5 p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-accent/30 rounded-2xl transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                            <span class="material-symbols-outlined text-accent text-xl leading-none">article</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-[10px] font-display font-bold text-accent uppercase tracking-widest">Normativa</span>
+                            <h4 class="font-display font-bold text-white text-sm mt-1 leading-snug group-hover:text-accent transition-colors">ISO 45001: los cambios que toda consultora debe conocer este año</h4>
+                            <p class="text-xs text-slate-500 mt-1 font-serif italic">5 min de lectura</p>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-600 group-hover:text-accent transition-colors text-lg leading-none shrink-0 mt-1">arrow_forward</span>
+                    </a>
+
+                    <a href="#" class="group flex items-start gap-5 p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-accent/30 rounded-2xl transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                            <span class="material-symbols-outlined text-accent text-xl leading-none">trending_up</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-[10px] font-display font-bold text-accent uppercase tracking-widest">Estrategia</span>
+                            <h4 class="font-display font-bold text-white text-sm mt-1 leading-snug group-hover:text-accent transition-colors">Cómo triplicar clientes sin contratar más inspectores</h4>
+                            <p class="text-xs text-slate-500 mt-1 font-serif italic">8 min de lectura</p>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-600 group-hover:text-accent transition-colors text-lg leading-none shrink-0 mt-1">arrow_forward</span>
+                    </a>
+
+                    <a href="#" class="group flex items-start gap-5 p-6 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-accent/30 rounded-2xl transition-all">
+                        <div class="shrink-0 w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                            <span class="material-symbols-outlined text-accent text-xl leading-none">gavel</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span class="text-[10px] font-display font-bold text-accent uppercase tracking-widest">Legal</span>
+                            <h4 class="font-display font-bold text-white text-sm mt-1 leading-snug group-hover:text-accent transition-colors">Firma digital en inspecciones: validez legal en Argentina y LATAM</h4>
+                            <p class="text-xs text-slate-500 mt-1 font-serif italic">6 min de lectura</p>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-600 group-hover:text-accent transition-colors text-lg leading-none shrink-0 mt-1">arrow_forward</span>
+                    </a>
+
+                    <div class="pt-2">
+                        <a href="#" class="inline-flex items-center gap-2 text-xs font-display font-black uppercase tracking-[0.3em] text-accent group">
+                            Ver todos los artículos
+                            <span class="material-symbols-outlined text-sm leading-none transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- CTA / CONTACT -->
     <section id="contacto" class="py-24">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
@@ -697,13 +1024,35 @@
      JAVASCRIPT
      ============================================================ -->
 <script>
-    // Navbar scroll shadow
+    // ============================================================
+    // LENIS SMOOTH SCROLL
+    // ============================================================
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            lerp: 0.08,
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 1.5,
+        });
+        function lenisRaf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(lenisRaf);
+        }
+        requestAnimationFrame(lenisRaf);
+    }
+
+    // ============================================================
+    // NAVBAR SCROLL SHADOW
+    // ============================================================
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('shadow-lg', window.scrollY > 20);
     }, { passive: true });
 
-    // Mobile menu
+    // ============================================================
+    // MOBILE MENU
+    // ============================================================
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     const hamIcon = document.getElementById('ham-icon');
@@ -718,7 +1067,9 @@
         });
     });
 
-    // Dark mode toggle
+    // ============================================================
+    // DARK MODE TOGGLE
+    // ============================================================
     const darkToggle = document.getElementById('dark-toggle');
     const darkIcon = document.getElementById('dark-icon');
     darkToggle.addEventListener('click', () => {
@@ -726,23 +1077,27 @@
         darkIcon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
     });
 
-    // Pricing toggle
+    // ============================================================
+    // PRICING TOGGLE
+    // ============================================================
     function setPricing(mode) {
         const btnMonthly = document.getElementById('btn-monthly');
-        const btnAnnual = document.getElementById('btn-annual');
-        const isAnnual = mode === 'annual';
-        btnAnnual.classList.toggle('bg-accent', isAnnual);
+        const btnAnnual  = document.getElementById('btn-annual');
+        const isAnnual   = mode === 'annual';
+        btnAnnual.classList.toggle('bg-accent',  isAnnual);
         btnAnnual.classList.toggle('text-primary', isAnnual);
-        btnAnnual.classList.toggle('shadow-sm', isAnnual);
-        btnMonthly.classList.toggle('bg-accent', !isAnnual);
+        btnAnnual.classList.toggle('shadow-sm',  isAnnual);
+        btnMonthly.classList.toggle('bg-accent',  !isAnnual);
         btnMonthly.classList.toggle('text-primary', !isAnnual);
-        btnMonthly.classList.toggle('shadow-sm', !isAnnual);
+        btnMonthly.classList.toggle('shadow-sm',  !isAnnual);
         document.querySelectorAll('.price-annual').forEach(el => el.classList.toggle('hidden', !isAnnual));
         document.querySelectorAll('.price-monthly').forEach(el => el.classList.toggle('hidden', isAnnual));
     }
     setPricing('annual');
 
-    // Scroll reveal
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
     const revealObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting) {
@@ -753,14 +1108,215 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // Demo form
+    // ============================================================
+    // DEMO FORM
+    // ============================================================
     document.getElementById('demo-form').addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = document.getElementById('form-submit-btn');
-        btn.textContent = '&#10003; Demo Agendado. Te contactamos en 24h.';
+        btn.textContent = '✓ Demo Agendado. Te contactamos en 24h.';
         btn.classList.replace('bg-accent', 'bg-green-500');
         btn.disabled = true;
     });
+
+    // ============================================================
+    // NEWSLETTER FORM
+    // ============================================================
+    const nlForm = document.getElementById('newsletter-form');
+    if (nlForm) {
+        nlForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('newsletter-btn');
+            btn.textContent = '✓ ¡Suscripto!';
+            btn.style.backgroundColor = '#22c55e';
+            btn.disabled = true;
+        });
+    }
+
+    // ============================================================
+    // CUSTOM CURSOR (pointer devices only)
+    // ============================================================
+    (function () {
+        if (!window.matchMedia('(hover: hover)').matches) return;
+
+        const dot  = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+        if (!dot || !ring) return;
+
+        let mx = -200, my = -200;
+        let rx = -200, ry = -200;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            dot.style.left = mx + 'px';
+            dot.style.top  = my + 'px';
+            dot.classList.add('cursor-visible');
+            ring.classList.add('cursor-visible');
+        }, { passive: true });
+
+        // Smooth ring follow using lerp
+        function lerpRing() {
+            rx += (mx - rx) * 0.11;
+            ry += (my - ry) * 0.11;
+            ring.style.left = rx + 'px';
+            ring.style.top  = ry + 'px';
+            requestAnimationFrame(lerpRing);
+        }
+        lerpRing();
+
+        // Hover state
+        const interactive = 'a, button, summary, label, [role="button"], .magnetic';
+        document.addEventListener('mouseover', e => {
+            if (e.target.closest(interactive)) ring.classList.add('hover-state');
+        });
+        document.addEventListener('mouseout', e => {
+            if (e.target.closest(interactive)) ring.classList.remove('hover-state');
+        });
+
+        // Text inputs
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.classList.remove('hover-state');
+                ring.classList.add('text-state');
+            });
+            el.addEventListener('mouseleave', () => ring.classList.remove('text-state'));
+        });
+
+        // Click state
+        document.addEventListener('mousedown', () => {
+            ring.classList.remove('hover-state');
+            ring.classList.add('click-state');
+        });
+        document.addEventListener('mouseup', () => ring.classList.remove('click-state'));
+
+        // Hide on leave
+        document.addEventListener('mouseleave', () => {
+            dot.classList.remove('cursor-visible');
+            ring.classList.remove('cursor-visible');
+        });
+        document.addEventListener('mouseenter', () => {
+            dot.classList.add('cursor-visible');
+            ring.classList.add('cursor-visible');
+        });
+    })();
+
+    // ============================================================
+    // MAGNETIC BUTTONS
+    // ============================================================
+    document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transition = 'transform 0.1s linear';
+        });
+        btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            const x = (e.clientX - (r.left + r.width  / 2)) * 0.38;
+            const y = (e.clientY - (r.top  + r.height / 2)) * 0.38;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            btn.style.transform  = 'translate(0, 0)';
+        });
+    });
+
+    // ============================================================
+    // HERO H1 — LINE REVEAL ON LOAD
+    // ============================================================
+    document.querySelectorAll('.hero-line-inner').forEach((line, i) => {
+        setTimeout(() => line.classList.add('revealed'), 180 + i * 130);
+    });
+
+    // ============================================================
+    // HERO PARALLAX (background image)
+    // ============================================================
+    (function () {
+        const heroBg = document.querySelector('header .absolute img');
+        if (!heroBg) return;
+        heroBg.style.transform = 'translateY(0) scale(1.12)';
+        heroBg.style.willChange = 'transform';
+        const heroHeight = window.innerHeight;
+
+        function updateParallax(scrollY) {
+            if (scrollY > heroHeight * 1.2) return;
+            heroBg.style.transform = `translateY(${scrollY * 0.18}px) scale(1.12)`;
+        }
+
+        if (typeof lenis !== 'undefined' && lenis) {
+            lenis.on('scroll', ({ scroll }) => updateParallax(scroll));
+        } else {
+            window.addEventListener('scroll', () => updateParallax(window.scrollY), { passive: true });
+        }
+    })();
+
+    // ============================================================
+    // PLATFORM SCREENSHOT — 3D TILT ON HOVER
+    // ============================================================
+    (function () {
+        const showcase = document.getElementById('platform-showcase');
+        if (!showcase) return;
+        showcase.addEventListener('mousemove', e => {
+            const r = showcase.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width  - 0.5) * 7;
+            const y = ((e.clientY - r.top)  / r.height - 0.5) * -7;
+            showcase.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${y}deg) scale(1.015)`;
+        });
+        showcase.addEventListener('mouseleave', () => {
+            showcase.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1)';
+        });
+    })();
+
+    // ============================================================
+    // STAT COUNTERS — animate when visible
+    // ============================================================
+    (function () {
+        const statEls = document.querySelectorAll('.stat-val[data-count]');
+        const countObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el     = entry.target;
+                const target = parseInt(el.dataset.count);
+                const suffix = el.dataset.suffix || '';
+                const dur    = 1600;
+                const t0     = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min((now - t0) / dur, 1);
+                    const ease     = 1 - Math.pow(1 - progress, 4);
+                    el.textContent = Math.floor(ease * target) + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target + suffix;
+                }
+                requestAnimationFrame(tick);
+                countObs.unobserve(el);
+            });
+        }, { threshold: 0.6 });
+
+        statEls.forEach(el => countObs.observe(el));
+    })();
+
+    // ============================================================
+    // ACTIVE NAV SECTION HIGHLIGHT
+    // ============================================================
+    (function () {
+        const sections  = document.querySelectorAll('section[id]');
+        const navLinks  = document.querySelectorAll('nav a.nav-link[href^="#"]');
+
+        const secObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    navLinks.forEach(l => {
+                        l.classList.remove('active-section', 'text-accent');
+                        if (l.getAttribute('href') === `#${e.target.id}`) {
+                            l.classList.add('active-section', 'text-accent');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.45 });
+
+        sections.forEach(s => secObs.observe(s));
+    })();
 </script>
 
 </body>
