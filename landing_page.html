@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
 <meta charset="utf-8"/>
-<link href="img/isologo_industrias_xamanen.png" rel="icon" type="image/png" style="width: 232px; height: 132px;"/>
+<link href="img/isologo_industrias_xamanen.png" rel="icon" type="image/png" style="width: 343px; height: 192px;"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="description" content="Plataforma SaaS para consultoras de Seguridad e Higiene. Automatice auditorías, firmas digitales en campo y reportes instantáneos."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -168,23 +168,27 @@ body {
 <!-- ============================================================
      NAVIGATION
      ============================================================ -->
-<nav id="navbar" class="fixed top-0 z-[60] w-full bg-white/70 dark:bg-background-dark/70 backdrop-blur-md transition-all duration-300">
+<nav id="navbar" class="fixed top-0 z-[60] w-full bg-background-dark/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
         <div class="flex justify-between items-center h-20 lg:h-24">
 
             <!-- Logo -->
             <a href="#" class="flex items-center shrink-0">
-                <img alt="Industrias Xamanen" class="h-8 lg:h-9 w-auto" src="img/Industrias_xamanen_logo_sin_fondo.png"/>
+                <img alt="Industrias Xamanen" class="h-7 lg:h-9 w-auto brightness-0 invert" src="img/Industrias_xamanen_logo_sin_fondo.png" style="width: 343px; height: 192px;"/>
             </a>
 
-            <!-- Desktop Nav (hidden for conversion focus) -->
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="#producto" class="nav-link text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Producto</a>
+                <a href="#soluciones" class="nav-link text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Soluciones</a>
+                <a href="#proceso" class="nav-link text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Proceso</a>
+                <a href="#precios" class="nav-link text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Precios</a>
+                <a href="#blog" class="nav-link text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Blog</a>
+            </div>
 
             <!-- Desktop CTAs -->
             <div class="hidden lg:flex items-center gap-6">
-                <button id="dark-toggle" class="p-2 hover:text-accent transition-colors" aria-label="Cambiar tema">
-                    <span id="dark-icon" class="material-symbols-outlined text-xl leading-none">dark_mode</span>
-                </button>
-                <a href="#contacto" class="bg-primary text-white dark:bg-accent dark:text-primary px-8 py-3 text-[10px] font-black uppercase tracking-[0.3em] hover:shadow-lg transition-all">Agendar Demo</a>
+                <a href="#contacto" class="bg-accent text-primary px-8 py-3 text-[10px] font-black uppercase tracking-[0.3em] hover:shadow-lg transition-all">Agendar Demo</a>
             </div>
 
             <!-- Mobile hamburger -->
@@ -195,9 +199,15 @@ body {
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md">
-        <div class="px-6 py-6">
-            <a href="#contacto" class="block w-full text-center bg-primary text-white dark:bg-accent dark:text-primary px-8 py-4 text-xs font-black uppercase tracking-[0.3em]">Agendar Demo Gratis</a>
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-800 bg-background-dark/95 backdrop-blur-md">
+        <div class="px-6 py-8 space-y-6">
+            <a href="#producto" class="block text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Producto</a>
+            <a href="#soluciones" class="block text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Soluciones</a>
+            <a href="#proceso" class="block text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Proceso</a>
+            <a href="#precios" class="block text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Precios</a>
+            <a href="#blog" class="block text-sm font-bold uppercase tracking-widest text-slate-300 hover:text-accent transition-colors">Blog</a>
+            <hr class="border-white/10"/>
+            <a href="#contacto" class="block w-full text-center bg-accent text-primary px-8 py-4 text-xs font-black uppercase tracking-[0.3em]">Agendar Demo Gratis</a>
         </div>
     </div>
 </nav>
@@ -205,104 +215,84 @@ body {
 <!-- ============================================================
      HERO
      ============================================================ -->
-<header class="relative min-h-[95vh] flex flex-col justify-end overflow-hidden">
+<header class="relative min-h-screen flex flex-col justify-start overflow-hidden pt-28 lg:pt-36">
     <div class="absolute inset-0 z-0">
-        <img alt="Análisis HSE" class="w-full h-full object-cover object-center filter blur-[2px] opacity-55 grayscale-[20%]" src="img/analisis.png"/>
+        <img alt="Análisis HSE" class="w-full h-full object-cover object-center filter blur-[1px] opacity-40 grayscale-[20%]" src="img/analisis.png"/>
         <div class="absolute inset-0 hero-gradient-overlay"></div>
     </div>
 
-    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-16 pb-20 lg:pb-32 w-full">
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-16 pb-12 lg:pb-32 w-full">
         <div class="max-w-5xl">
             <!-- Eyebrow -->
-            <div class="font-display text-xs font-bold uppercase tracking-[0.5em] text-accent mb-10 flex items-center gap-5">
-                <span class="w-12 h-[1px] bg-accent"></span>
+            <div class="font-display text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-accent mb-6 md:mb-10 flex items-center gap-4 md:gap-5">
+                <span class="w-8 md:w-12 h-[1px] bg-accent"></span>
                 Plataforma HSE · Para Consultoras
             </div>
 
             <!-- H1 -->
-            <h1 class="text-5xl lg:text-[6.5rem] font-display font-extrabold text-primary dark:text-white leading-[0.9] tracking-tight mb-10">
+            <h1 class="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-7xl xl:text-[5.5rem] font-display font-extrabold text-white leading-[1.1] md:leading-[0.95] tracking-tight mb-6 md:mb-10">
                 <span class="hero-line"><span class="hero-line-inner">Digitalice el 100%</span></span>
                 <span class="hero-line"><span class="hero-line-inner">de sus trabajos y</span></span>
-                <span class="hero-line"><span class="hero-line-inner">recupere <span class="relative inline-block">10 Horas<span class="absolute -bottom-2 left-0 w-full h-4 bg-accent/20 -z-10"></span></span></span></span>
+                <span class="hero-line"><span class="hero-line-inner">recupere <span class="text-accent underline decoration-accent/30 underline-offset-8">10 Horas</span></span></span>
                 <span class="hero-line"><span class="hero-line-inner">Operativas Semanales</span></span>
                 <span class="hero-line"><span class="hero-line-inner">por Técnico.</span></span>
             </h1>
 
             <!-- Subheadline -->
-            <p class="text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-display leading-relaxed border-l-4 border-accent pl-8 py-2 max-w-xl mb-10">
+            <p class="text-base md:text-lg lg:text-xl text-slate-300 font-display leading-relaxed border-l-2 md:border-l-4 border-accent pl-4 md:pl-8 py-1 md:py-2 max-w-xl mb-10 md:mb-12">
                 Digitalización móvil, firmas electrónicas y reportes generados en tiempo real — sin papeles, sin demoras.
             </p>
 
             <!-- Social proof micro -->
-            <div class="flex items-center gap-5 mb-8">
-                <div class="flex -space-x-3">
-                    <div class="w-9 h-9 rounded-full bg-accent/30 border-2 border-white dark:border-background-dark flex items-center justify-center font-display font-bold text-[10px] text-primary">SM</div>
-                    <div class="w-9 h-9 rounded-full bg-primary/20 border-2 border-white dark:border-background-dark flex items-center justify-center font-display font-bold text-[10px] text-primary dark:text-white">CR</div>
-                    <div class="w-9 h-9 rounded-full bg-accent/20 border-2 border-white dark:border-background-dark flex items-center justify-center font-display font-bold text-[10px] text-primary">DH</div>
-                    <div class="w-9 h-9 rounded-full bg-slate-100 border-2 border-white dark:border-background-dark flex items-center justify-center font-display font-bold text-[10px] text-slate-500">+</div>
+            <div class="flex items-center gap-4 md:gap-5 mb-6 md:mb-8">
+                <div class="flex -space-x-2 md:-space-x-3">
+                    <div class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-accent/30 border-2 border-background-dark flex items-center justify-center font-display font-bold text-[9px] md:text-[10px] text-primary">SM</div>
+                    <div class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary/20 border-2 border-background-dark flex items-center justify-center font-display font-bold text-[9px] md:text-[10px] text-white">CR</div>
+                    <div class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-accent/20 border-2 border-background-dark flex items-center justify-center font-display font-bold text-[9px] md:text-[10px] text-primary">DH</div>
                 </div>
                 <div>
-                    <div class="text-amber-400 text-sm leading-none mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="text-[10px] font-display font-bold text-slate-500 uppercase tracking-widest">+200 consultoras confían en Xamanen</p>
+                    <div class="text-amber-400 text-xs md:text-sm leading-none mb-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-[9px] md:text-[10px] font-display font-bold text-slate-500 uppercase tracking-widest">+200 consultoras confían</p>
                 </div>
             </div>
 
             <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                <a href="#contacto" class="magnetic bg-primary text-white dark:bg-accent dark:text-primary px-10 py-5 text-xs font-black uppercase tracking-[0.3em] hover:shadow-2xl transition-all inline-flex items-center justify-center gap-3">
-                    <span class="material-symbols-outlined text-base leading-none">rocket_launch</span>
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-10">
+                <a href="#contacto" class="magnetic bg-accent text-primary px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] hover:shadow-2xl transition-all inline-flex items-center justify-center gap-3">
+                    <span class="material-symbols-outlined text-sm md:text-base leading-none">rocket_launch</span>
                     Solicitar Demo Gratis
                 </a>
-                <a href="#software" class="magnetic flex items-center justify-center gap-3 px-10 py-5 border border-slate-300 dark:border-slate-700 text-xs font-black uppercase tracking-[0.3em] hover:bg-white dark:hover:bg-slate-800 transition-all">
-                    <span class="material-symbols-outlined text-base leading-none">play_circle</span>
-                    Ver la Plataforma
+                <a href="#software" class="magnetic flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 border border-slate-700 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] hover:bg-slate-800 transition-all text-white">
+                    <span class="material-symbols-outlined text-sm md:text-base leading-none">play_circle</span>
+                    Ver Plataforma
                 </a>
             </div>
 
-            <!-- Trust band — above the fold social proof -->
-            <div class="mb-10 pt-8 border-t border-slate-200 dark:border-slate-700">
-                <p class="font-display text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-5">Consultoras y empresas industriales que confían en nosotros:</p>
-                <div class="flex flex-wrap items-center gap-8 mb-6">
-                    <!-- Company name placeholders (monochrome style) -->
-                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">CONSTRUX</div>
-                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">SAFE&#8209;CO</div>
-                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">MINING&#8209;X</div>
-                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">LOGIS&#8209;PRO</div>
-                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">INDUS&#8209;NET</div>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-accent text-xs leading-none">verified</span>
-                        ISO 45001 Compatible
-                    </span>
-                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-accent text-xs leading-none">lock</span>
-                        Datos Encriptados
-                    </span>
-                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-accent text-xs leading-none">cloud_done</span>
-                        99.9% Uptime SLA
-                    </span>
-                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-accent text-xs leading-none">star</span>
-                        4.9 / 5 Valoración
-                    </span>
+            <!-- Trust band — Company Logos -->
+            <div class="pt-10 border-t border-slate-800/60 max-w-4xl">
+                <p class="text-[9px] font-display font-bold text-slate-500 uppercase tracking-[0.3em] mb-6">Consultoras que confían en Xamanen:</p>
+                <div class="flex flex-wrap items-center gap-x-8 gap-y-6 opacity-40 hover:opacity-60 transition-opacity">
+                    <div class="text-lg md:text-xl font-display font-black tracking-tighter text-white">CONSTRUX</div>
+                    <div class="text-lg md:text-xl font-display font-black tracking-tighter text-white">SAFE-CO</div>
+                    <div class="text-lg md:text-xl font-display font-black tracking-tighter text-white">MINING-X</div>
+                    <div class="text-lg md:text-xl font-display font-black tracking-tighter text-white">LOGIS-PRO</div>
+                    <div class="text-lg md:text-xl font-display font-black tracking-tighter text-white">INDUS-NET</div>
                 </div>
             </div>
 
-            <!-- Trust chips -->
-            <div class="flex flex-wrap gap-6">
-                <span class="flex items-center gap-2 text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-accent text-sm leading-none">schedule</span>
-                    6h ahorro por informe
+            <!-- Trust chips (Simplified for mobile) -->
+            <div class="flex flex-wrap gap-4 md:gap-6 mt-10">
+                <span class="flex items-center gap-2 text-[9px] md:text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-accent text-xs md:text-sm leading-none">schedule</span>
+                    6h ahorro / informe
                 </span>
-                <span class="flex items-center gap-2 text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-accent text-sm leading-none">draw</span>
-                    Firma digital con validez legal
+                <span class="flex items-center gap-2 text-[9px] md:text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-accent text-xs md:text-sm leading-none">draw</span>
+                    Firma digital legal
                 </span>
-                <span class="flex items-center gap-2 text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-accent text-sm leading-none">cloud_done</span>
-                    100% en la nube · Sin instalación
+                <span class="flex items-center gap-2 text-[9px] md:text-[10px] font-display font-bold text-slate-500 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-accent text-xs md:text-sm leading-none">cloud_done</span>
+                    100% en la nube
                 </span>
             </div>
         </div>
@@ -883,7 +873,7 @@ body {
     <div class="max-w-[1600px] mx-auto px-6 lg:px-16">
         <div class="grid lg:grid-cols-12 gap-16 mb-16">
             <div class="lg:col-span-5 space-y-8">
-                <img alt="Industrias Xamanen" class="h-10 w-auto brightness-0 invert" src="img/Industrias_xamanen_logo_sin_fondo.png"/>
+                <img alt="Industrias Xamanen" class="h-10 w-auto brightness-0 invert" src="img/Industrias_xamanen_logo.png"/>
                 <p class="text-slate-400 font-serif italic leading-relaxed max-w-sm text-sm">
                     "Liderando la transformación digital de los procesos HSE en toda Latinoamérica. Digitalizamos el rigor, potenciamos el cumplimiento."
                 </p>
@@ -980,14 +970,9 @@ body {
     });
 
     // ============================================================
-    // DARK MODE TOGGLE
+    // THEME (Always Dark)
     // ============================================================
-    const darkToggle = document.getElementById('dark-toggle');
-    const darkIcon = document.getElementById('dark-icon');
-    darkToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        darkIcon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
-    });
+    document.documentElement.classList.add('dark');
 
     // ============================================================
     // PRICING TOGGLE
