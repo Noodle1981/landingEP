@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<link href="img/isologo_industrias_xamanen.png" rel="icon" type="image/png"/>
+<link href="img/isologo_industrias_xamanen.png" rel="icon" type="image/png" style="width: 232px; height: 132px;"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="description" content="Plataforma SaaS para consultoras de Seguridad e Higiene. Automatice auditorías, firmas digitales en campo y reportes instantáneos."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -22,7 +22,7 @@
                 },
                 fontFamily: {
                     "display": ["Plus Jakarta Sans", "sans-serif"],
-                    "serif": ["Playfair Display", "serif"]
+                    "serif": ["Plus Jakarta Sans", "sans-serif"]
                 },
             },
         },
@@ -48,7 +48,7 @@
 </style>
 <style>
     body {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         color: rgb(30 41 59);
         background-color: #fcfcfc;
         -webkit-font-smoothing: antialiased;
@@ -63,7 +63,7 @@
         letter-spacing: -0.025em;
     }
 </style>
-<title>Xamanen | Plataforma HSE para Consultoras</title>
+<title>Digitalice sus Trabajos HSE y Recupere 10h Semanales por Técnico | Xamanen</title>
 
 <!-- Lenis smooth scroll -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -73,89 +73,6 @@
    PREMIUM INTERACTIONS
    ================================================================ */
 
-/* Hide default cursor on pointer devices */
-@media (hover: hover) {
-    *, *::before, *::after { cursor: none !important; }
-}
-
-/* Custom cursor */
-.cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 7px; height: 7px;
-    background: #00D1C1;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    will-change: left, top;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 38px; height: 38px;
-    border: 1.5px solid rgba(0,209,193,0.55);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    will-change: left, top;
-    opacity: 0;
-    transition: width 0.35s cubic-bezier(0.16,1,0.3,1),
-                height 0.35s cubic-bezier(0.16,1,0.3,1),
-                background-color 0.35s,
-                border-color 0.35s,
-                border-radius 0.35s,
-                opacity 0.3s;
-}
-.cursor-ring.hover-state {
-    width: 62px; height: 62px;
-    background-color: rgba(0,209,193,0.08);
-    border-color: #00D1C1;
-}
-.cursor-ring.click-state {
-    width: 22px; height: 22px;
-    background-color: rgba(0,209,193,0.25);
-}
-.cursor-ring.text-state {
-    width: 3px; height: 30px;
-    border-radius: 2px;
-    background-color: rgba(0,209,193,0.7);
-    border-color: transparent;
-}
-.cursor-visible { opacity: 1; }
-
-/* Animated film grain — wrapper clips to viewport, SVG is absolute inside */
-#grain-wrap {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 99990;
-}
-.grain-overlay {
-    position: absolute;
-    top: -15%; left: -15%;
-    width: 130%; height: 130%;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
-    animation: grain-shift 0.5s steps(1) infinite;
-}
-@keyframes grain-shift {
-    0%   { transform: translate(0, 0); }
-    10%  { transform: translate(-3%, -4%); }
-    20%  { transform: translate(4%, 2%); }
-    30%  { transform: translate(-2%, 5%); }
-    40%  { transform: translate(5%, -2%); }
-    50%  { transform: translate(-4%, 4%); }
-    60%  { transform: translate(3%, -5%); }
-    70%  { transform: translate(-5%, 2%); }
-    80%  { transform: translate(2%, 4%); }
-    90%  { transform: translate(4%, -2%); }
-    100% { transform: translate(0, 0); }
-}
 
 /* Hero H1 line reveal */
 .hero-line {
@@ -247,20 +164,6 @@ body {
 </head>
 <body class="selection:bg-accent selection:text-primary">
 
-<!-- Custom cursor -->
-<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-
-<!-- Animated film grain overlay (clipped by fixed wrapper to avoid scrollbar) -->
-<div id="grain-wrap" aria-hidden="true">
-    <svg class="grain-overlay" xmlns="http://www.w3.org/2000/svg">
-        <filter id="grain-filter" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch"/>
-            <feColorMatrix type="saturate" values="0"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#grain-filter)"/>
-    </svg>
-</div>
 
 <!-- ============================================================
      NAVIGATION
@@ -274,22 +177,14 @@ body {
                 <img alt="Industrias Xamanen" class="h-8 lg:h-9 w-auto" src="img/Industrias_xamanen_logo_sin_fondo.png"/>
             </a>
 
-            <!-- Desktop Nav -->
-            <div class="hidden lg:flex items-center space-x-10">
-                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#producto">Producto</a>
-                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#soluciones">Soluciones</a>
-                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#software">Software</a>
-                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#precios">Precios</a>
-                <a class="nav-link font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:text-accent transition-colors" href="#blog">Blog</a>
-            </div>
+            <!-- Desktop Nav (hidden for conversion focus) -->
 
             <!-- Desktop CTAs -->
             <div class="hidden lg:flex items-center gap-6">
                 <button id="dark-toggle" class="p-2 hover:text-accent transition-colors" aria-label="Cambiar tema">
                     <span id="dark-icon" class="material-symbols-outlined text-xl leading-none">dark_mode</span>
                 </button>
-                <button class="font-display text-[10px] font-bold uppercase tracking-[0.3em] hover:opacity-60 transition-opacity">Login</button>
-                <a href="#contacto" class="border border-primary dark:border-accent px-8 py-3 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-primary transition-all">Agendar Demo</a>
+                <a href="#contacto" class="bg-primary text-white dark:bg-accent dark:text-primary px-8 py-3 text-[10px] font-black uppercase tracking-[0.3em] hover:shadow-lg transition-all">Agendar Demo</a>
             </div>
 
             <!-- Mobile hamburger -->
@@ -301,13 +196,8 @@ body {
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md">
-        <div class="px-6 py-6 space-y-1">
-            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#producto">Producto</a>
-            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#soluciones">Soluciones</a>
-            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#software">Software</a>
-            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#precios">Precios</a>
-            <a class="block font-display text-xs font-bold uppercase tracking-[0.3em] py-4 border-b border-slate-100 dark:border-slate-800 hover:text-accent transition-colors" href="#blog">Blog</a>
-            <a href="#contacto" class="block w-full text-center bg-primary text-white dark:bg-accent dark:text-primary px-8 py-4 text-xs font-black uppercase tracking-[0.3em] mt-4">Agendar Demo Gratis</a>
+        <div class="px-6 py-6">
+            <a href="#contacto" class="block w-full text-center bg-primary text-white dark:bg-accent dark:text-primary px-8 py-4 text-xs font-black uppercase tracking-[0.3em]">Agendar Demo Gratis</a>
         </div>
     </div>
 </nav>
@@ -330,14 +220,17 @@ body {
             </div>
 
             <!-- H1 -->
-            <h1 class="text-6xl lg:text-[9rem] font-display font-extrabold text-primary dark:text-white leading-[0.85] tracking-tight mb-10">
-                <span class="hero-line"><span class="hero-line-inner">Escale su</span></span>
-                <span class="hero-line"><span class="hero-line-inner"><span class="relative inline-block">Consultora.<span class="absolute -bottom-2 left-0 w-full h-4 bg-accent/20 -z-10"></span></span></span></span>
+            <h1 class="text-5xl lg:text-[6.5rem] font-display font-extrabold text-primary dark:text-white leading-[0.9] tracking-tight mb-10">
+                <span class="hero-line"><span class="hero-line-inner">Digitalice el 100%</span></span>
+                <span class="hero-line"><span class="hero-line-inner">de sus trabajos y</span></span>
+                <span class="hero-line"><span class="hero-line-inner">recupere <span class="relative inline-block">10 Horas<span class="absolute -bottom-2 left-0 w-full h-4 bg-accent/20 -z-10"></span></span></span></span>
+                <span class="hero-line"><span class="hero-line-inner">Operativas Semanales</span></span>
+                <span class="hero-line"><span class="hero-line-inner">por Técnico.</span></span>
             </h1>
 
             <!-- Subheadline -->
-            <p class="text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-serif leading-relaxed italic border-l-4 border-accent pl-8 py-2 max-w-xl mb-10">
-                Del campo al cliente: informes HSE en minutos, no días.
+            <p class="text-xl lg:text-2xl text-slate-500 dark:text-slate-400 font-display leading-relaxed border-l-4 border-accent pl-8 py-2 max-w-xl mb-10">
+                Digitalización móvil, firmas electrónicas y reportes generados en tiempo real — sin papeles, sin demoras.
             </p>
 
             <!-- Social proof micro -->
@@ -364,6 +257,37 @@ body {
                     <span class="material-symbols-outlined text-base leading-none">play_circle</span>
                     Ver la Plataforma
                 </a>
+            </div>
+
+            <!-- Trust band — above the fold social proof -->
+            <div class="mb-10 pt-8 border-t border-slate-200 dark:border-slate-700">
+                <p class="font-display text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-5">Consultoras y empresas industriales que confían en nosotros:</p>
+                <div class="flex flex-wrap items-center gap-8 mb-6">
+                    <!-- Company name placeholders (monochrome style) -->
+                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">CONSTRUX</div>
+                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">SAFE&#8209;CO</div>
+                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">MINING&#8209;X</div>
+                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">LOGIS&#8209;PRO</div>
+                    <div class="text-slate-300 dark:text-slate-600 font-display font-black text-lg tracking-tighter">INDUS&#8209;NET</div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-accent text-xs leading-none">verified</span>
+                        ISO 45001 Compatible
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-accent text-xs leading-none">lock</span>
+                        Datos Encriptados
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-accent text-xs leading-none">cloud_done</span>
+                        99.9% Uptime SLA
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full text-[10px] font-display font-bold text-slate-400 uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-accent text-xs leading-none">star</span>
+                        4.9 / 5 Valoración
+                    </span>
+                </div>
             </div>
 
             <!-- Trust chips -->
@@ -452,15 +376,9 @@ body {
                 <!-- Benefit 1 -->
                 <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="benefit-visual aspect-[4/3] bg-slate-100 dark:bg-slate-900 overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-[200px] text-accent/20 font-thin absolute scale-150 rotate-12">auto_awesome</span>
-                                <div class="w-56 h-56 border-2 border-accent/30 rounded-full flex items-center justify-center animate-pulse">
-                                    <div class="w-40 h-40 bg-accent/10 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="absolute bottom-10 right-10">
-                                <span class="text-[10rem] font-display font-black text-slate-200 dark:text-white/5 leading-none select-none">01</span>
+                        <div class="benefit-visual aspect-[4/3] bg-slate-100 dark:bg-slate-900 overflow-hidden relative rounded-2xl shadow-xl">
+                            <div class="absolute inset-0">
+                                <img src="img/dash_2.png" alt="Dashboard SST — Indicadores de Accidentalidad en tiempo real" class="w-full h-full object-cover object-top"/>
                             </div>
                         </div>
                     </div>
@@ -469,11 +387,11 @@ body {
                             <span class="font-display text-xs font-bold text-accent uppercase tracking-[0.4em]">Efficiency / ROI</span>
                             <h3 class="text-4xl lg:text-6xl font-display font-bold text-primary dark:text-white">Reportes Instantáneos</h3>
                         </div>
-                        <p class="text-xl lg:text-2xl font-serif text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl italic">
-                            Elimine la transcripción manual de raíz. Los informes se generan automáticamente al finalizar la inspección en campo, permitiendo entrega inmediata a sus clientes sin intermediarios.
+                        <p class="text-xl lg:text-2xl font-display text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+                            Dashboards HSE en tiempo real con indicadores de accidentalidad, gráficos por turno, género y estado de investigaciones. Sus datos disponibles en el instante que los necesita, sin esperas ni transcripciones.
                         </p>
                         <div class="pt-8 border-t border-slate-100 dark:border-slate-800">
-                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">6h <span class="text-xl font-serif italic font-normal text-slate-400 ml-2">Ahorro por informe</span></div>
+                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">6h <span class="text-xl font-display font-normal text-slate-400 ml-2">Ahorro por informe</span></div>
                         </div>
                     </div>
                 </div>
@@ -481,25 +399,22 @@ body {
                 <!-- Benefit 2 -->
                 <div class="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="benefit-visual aspect-[4/3] bg-primary overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-[200px] text-accent/30 font-thin absolute scale-125 -rotate-12">description</span>
-                            </div>
-                            <div class="absolute bottom-10 left-10">
-                                <span class="text-[10rem] font-display font-black text-white/10 leading-none select-none">02</span>
+                        <div class="benefit-visual aspect-[4/3] bg-primary overflow-hidden relative rounded-2xl shadow-xl">
+                            <div class="absolute inset-0">
+                                <img src="img/checklist_xama.png" alt="Checklists digitales de ambiente de trabajo y actitud hacia la seguridad" class="w-full h-full object-cover object-top"/>
                             </div>
                         </div>
                     </div>
                     <div class="w-full lg:w-1/2 space-y-8">
                         <div class="space-y-3">
                             <span class="font-display text-xs font-bold text-accent uppercase tracking-[0.4em]">Sustainability / Cost</span>
-                            <h3 class="text-4xl lg:text-6xl font-display font-bold text-primary dark:text-white">Cero Papelería</h3>
+                            <h3 class="text-4xl lg:text-6xl font-display font-bold text-primary dark:text-white">Checklists Digitales</h3>
                         </div>
-                        <p class="text-xl lg:text-2xl font-serif text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl italic">
-                            Digitalización completa de formularios, firmas y evidencias fotográficas vinculadas. Transforme su archivo físico en una base de datos inteligente y accesible desde cualquier dispositivo.
+                        <p class="text-xl lg:text-2xl font-display text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+                            Reemplace el papel por formularios digitales inteligentes: ambiente de trabajo, actitud hacia la seguridad y mucho más. Cada respuesta queda registrada, trazable y accesible desde cualquier dispositivo, en el momento exacto de la inspección.
                         </p>
                         <div class="pt-8 border-t border-slate-100 dark:border-slate-800">
-                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">100% <span class="text-xl font-serif italic font-normal text-slate-400 ml-2">Reducción costos operativos</span></div>
+                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">100% <span class="text-xl font-display font-normal text-slate-400 ml-2">Sin papelería física</span></div>
                         </div>
                     </div>
                 </div>
@@ -507,25 +422,22 @@ body {
                 <!-- Benefit 3 -->
                 <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 reveal">
                     <div class="w-full lg:w-1/2">
-                        <div class="benefit-visual aspect-[4/3] bg-accent/10 dark:bg-slate-900 overflow-hidden relative border border-accent/20">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-[200px] text-accent/30 font-thin absolute scale-125 rotate-6">draw</span>
-                            </div>
-                            <div class="absolute bottom-10 right-10">
-                                <span class="text-[10rem] font-display font-black text-accent/10 leading-none select-none">03</span>
+                        <div class="benefit-visual aspect-[4/3] bg-accent/10 dark:bg-slate-900 overflow-hidden relative rounded-2xl shadow-xl">
+                            <div class="absolute inset-0">
+                                <img src="img/moodle_xama.png" alt="Plataforma de capacitaciones virtuales Xamanen — cursos y calendario de formación" class="w-full h-full object-cover object-top"/>
                             </div>
                         </div>
                     </div>
                     <div class="w-full lg:w-1/2 space-y-8">
                         <div class="space-y-3">
-                            <span class="font-display text-xs font-bold text-accent uppercase tracking-[0.4em]">Legal / Compliance</span>
-                            <h3 class="text-4xl lg:text-6xl font-display font-bold text-primary dark:text-white">Firma Digital Legal</h3>
+                            <span class="font-display text-xs font-bold text-accent uppercase tracking-[0.4em]">Training / Compliance</span>
+                            <h3 class="text-4xl lg:text-6xl font-display font-bold text-primary dark:text-white">Capacitaciones Virtuales</h3>
                         </div>
-                        <p class="text-xl lg:text-2xl font-serif text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl italic">
-                            Capture firmas digitales con validez legal directamente en campo desde cualquier dispositivo móvil. Cada inspección queda certificada, trazable y vinculada a su evidencia fotográfica.
+                        <p class="text-xl lg:text-2xl font-display text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+                            Capacite a su equipo desde cualquier lugar con cursos integrados a la plataforma. Calendarios de formación, seguimiento de progreso y certificados digitales — todo conectado con su gestión HSE en tiempo real.
                         </p>
                         <div class="pt-8 border-t border-slate-100 dark:border-slate-800">
-                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">100% <span class="text-xl font-serif italic font-normal text-slate-400 ml-2">Validez legal garantizada</span></div>
+                            <div class="text-6xl lg:text-7xl font-display font-black text-primary dark:text-white">100% <span class="text-xl font-display font-normal text-slate-400 ml-2">Formación integrada</span></div>
                         </div>
                     </div>
                 </div>
@@ -552,7 +464,7 @@ body {
             <div class="relative reveal">
                 <div class="absolute -inset-4 bg-accent/5 rounded-3xl blur-3xl"></div>
                 <div id="platform-showcase" class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60">
-                    <img src="img/page_platform.png" alt="Plataforma Xamanen — Dashboard HSE" class="w-full h-auto"/>
+                    <img src="img/dash_1.png" alt="Plataforma Xamanen — Dashboard HSE · Indicadores de Accidentalidad" class="w-full h-auto"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent pointer-events-none"></div>
                 </div>
                 <!-- Feature chips -->
@@ -1133,73 +1045,6 @@ body {
         });
     }
 
-    // ============================================================
-    // CUSTOM CURSOR (pointer devices only)
-    // ============================================================
-    (function () {
-        if (!window.matchMedia('(hover: hover)').matches) return;
-
-        const dot  = document.getElementById('cursor-dot');
-        const ring = document.getElementById('cursor-ring');
-        if (!dot || !ring) return;
-
-        let mx = -200, my = -200;
-        let rx = -200, ry = -200;
-
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX;
-            my = e.clientY;
-            dot.style.left = mx + 'px';
-            dot.style.top  = my + 'px';
-            dot.classList.add('cursor-visible');
-            ring.classList.add('cursor-visible');
-        }, { passive: true });
-
-        // Smooth ring follow using lerp
-        function lerpRing() {
-            rx += (mx - rx) * 0.11;
-            ry += (my - ry) * 0.11;
-            ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
-            requestAnimationFrame(lerpRing);
-        }
-        lerpRing();
-
-        // Hover state
-        const interactive = 'a, button, summary, label, [role="button"], .magnetic';
-        document.addEventListener('mouseover', e => {
-            if (e.target.closest(interactive)) ring.classList.add('hover-state');
-        });
-        document.addEventListener('mouseout', e => {
-            if (e.target.closest(interactive)) ring.classList.remove('hover-state');
-        });
-
-        // Text inputs
-        document.querySelectorAll('input, textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                ring.classList.remove('hover-state');
-                ring.classList.add('text-state');
-            });
-            el.addEventListener('mouseleave', () => ring.classList.remove('text-state'));
-        });
-
-        // Click state
-        document.addEventListener('mousedown', () => {
-            ring.classList.remove('hover-state');
-            ring.classList.add('click-state');
-        });
-        document.addEventListener('mouseup', () => ring.classList.remove('click-state'));
-
-        // Hide on leave
-        document.addEventListener('mouseleave', () => {
-            dot.classList.remove('cursor-visible');
-            ring.classList.remove('cursor-visible');
-        });
-        document.addEventListener('mouseenter', () => {
-            dot.classList.add('cursor-visible');
-            ring.classList.add('cursor-visible');
-        });
-    })();
 
     // ============================================================
     // MAGNETIC BUTTONS
